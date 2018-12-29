@@ -104,17 +104,20 @@
 
 
 
-  <meta name="description" content="life is not easy, whatever, not tough">
+  <meta name="description" content="HTTP协议是什么？http协议是超文本传输协议，用于在客户端与服务器间进行数据传输。">
+<meta name="keywords" content="前端学习,http,面试经验">
 <meta property="og:type" content="article">
 <meta property="og:title" content="点到即止，对HTTP协议的理解">
 <meta property="og:url" content="http://yoursite.com/2018/12/29/点到即止，对HTTP协议的理解/index.html">
 <meta property="og:site_name" content="戏铃人">
-<meta property="og:description" content="life is not easy, whatever, not tough">
+<meta property="og:description" content="HTTP协议是什么？http协议是超文本传输协议，用于在客户端与服务器间进行数据传输。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-29T10:06:07.660Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181220155157797">
+<meta property="og:updated_time" content="2018-12-29T10:27:27.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="点到即止，对HTTP协议的理解">
-<meta name="twitter:description" content="life is not easy, whatever, not tough">
+<meta name="twitter:description" content="HTTP协议是什么？http协议是超文本传输协议，用于在客户端与服务器间进行数据传输。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181220155157797">
 
 
 
@@ -390,12 +393,34 @@
                 
               
 
-              <time title="创建时间：2018-12-29 18:06:07" itemprop="dateCreated datePublished" datetime="2018-12-29T18:06:07+08:00">2018-12-29</time>
+              <time title="创建时间：2018-12-29 18:06:07 / 修改时间：18:27:27" itemprop="dateCreated datePublished" datetime="2018-12-29T18:06:07+08:00">2018-12-29</time>
             
 
+            
+              
+
+              
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/计算机网络/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -424,7 +449,43 @@
       
 
       
-        
+        <h1 id="HTTP协议是什么？"><a href="#HTTP协议是什么？" class="headerlink" title="HTTP协议是什么？"></a>HTTP协议是什么？</h1><p>http协议是超文本传输协议，用于在客户端与服务器间进行数据传输。<br><a id="more"></a></p>
+<h1 id="HTTP协议位于计算机网络的哪一层？"><a href="#HTTP协议位于计算机网络的哪一层？" class="headerlink" title="HTTP协议位于计算机网络的哪一层？"></a>HTTP协议位于计算机网络的哪一层？</h1><p>http协议是位于最顶层的应用层协议，在传输层的TCP/UDP，网络层的IP协议之上。其中在应用层和传输层之间有一层独立的安全套接层SSL。</p>
+<h1 id="HTTP1-0-HTTP1-1的区别？"><a href="#HTTP1-0-HTTP1-1的区别？" class="headerlink" title="HTTP1.0,HTTP1.1的区别？"></a>HTTP1.0,HTTP1.1的区别？</h1><p>HTTP的特点在于无状态，无连接。为了保持长连接，http1.0需要设置connection：keep-alive ，而在http1.1时默认为长连接。</p>
+<p>http1.0保存状态使用pragma，expire，last-modified/if-modified-since</p>
+<p>http1.1新增了cookie，cache-control，etag/if-none-match（这几个属性在下面详细介绍）</p>
+<p>http1.1新增状态码100，用于请求时是否发送数据的预先判断。即先建立连接发送requestHeader，若服务器返回100，则继续发送requestBody。</p>
+<p>http1.1新增了host属性，使不同的虚拟站点共用同一个ip</p>
+<p>http1.1新增了option请求，用于判断是否允许get、post请求。如发送一个get前会先发送一个option请求，以确认是否允许发送get请求</p>
+<h1 id="HTTP2-0的理解？"><a href="#HTTP2-0的理解？" class="headerlink" title="HTTP2.0的理解？"></a>HTTP2.0的理解？</h1><p>1、二进制分帧：http2.0的基础，将数据以消息的形式发送，将消息分解成更小的单位——帧</p>
+<p>2、头部压缩：对多次http请求进行头部比较，相同的参数则不会重复发送。</p>
+<p>3、多路复用：过去多个http请求需要建立多个tcp连接，因此同时发送多个http请求会有限制，且性能不高；在http2.0，由于数据以帧的形式传输，请求会被拆分开来传输，并在最后被重新打包，以达到同时进行多个请求的结果。</p>
+<p>4、服务端推送：服务器通过一个独立的url向客户端推送可能用到的数据，并加以缓存。</p>
+<p>5、请求优先级：可以设置每个请求的优先级，如css优先于img</p>
+<h1 id="HTTPS的理解？"><a href="#HTTPS的理解？" class="headerlink" title="HTTPS的理解？"></a>HTTPS的理解？</h1><p>https使用对称密钥对数据进行加密，加强了http请求过程中的安全性，通过以下过程实现：</p>
+<p>1、客户端发送请求</p>
+<p>2、服务端响应并生成公钥和私钥，返回证书（包含公钥）</p>
+<p>3、客户端检查证书安全性，若安全，则使用公钥对客户端产生的对称秘钥进行加密，将加密后的对称密钥发送给服务端</p>
+<p>4、服务端使用私钥进行解密，并用解密得到的对称密钥对要返回的数据进行加密，将加密后的数据返回给客户端</p>
+<p>5、客户端使用对称密钥对数据进行解密</p>
+<p>cookie是什么？sessionStorage和localStorage是什么？<br>cookie用于储存用户凭证信息，如登录信息。但由于是浏览器可见的，一般不存放用户名密码。</p>
+<p>cookie会在http请求中发送，与后端的session进行交互</p>
+<h1 id="设置cookie的方式："><a href="#设置cookie的方式：" class="headerlink" title="设置cookie的方式："></a>设置cookie的方式：</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.cookie = <span class="string">'name='</span> + <span class="string">'123456;'</span> + <span class="string">'expires='</span> + 时间戳 + <span class="string">';'</span> + <span class="string">'domain='</span> + 域名 + <span class="string">';'</span></span><br></pre></td></tr></table></figure>
+<p>sessionStorage和localStorage是浏览器缓存，将数据缓存在浏览器中，不会发送到服务器，也无法设置过期时间</p>
+<p>sessionStorage随浏览器关闭而清除；localStorage保存在本地，需要手动清除</p>
+<h1 id="强缓存和协商缓存？"><a href="#强缓存和协商缓存？" class="headerlink" title="强缓存和协商缓存？"></a>强缓存和协商缓存？</h1><p>客户端发送http请求到服务器会经过以下过程：</p>
+<p><img src="https://img-blog.csdnimg.cn/20181220155157797" alt="缓存策略"><br>1、判断header中的expires和catch-control是否命中强缓存（即是否过期），若命中，则加载强缓存，不与服务端建立连接；若未命中，则向服务端发送请求</p>
+<p>2、服务端先后检验header中的if-modified-since和if-none-match与服务端保存的last-modified和etag是否一致，若一致，则命中协商缓存，返回状态码304，告知客户端去读取协商缓存；若不一致，则返回状态码200和新数据</p>
+<h1 id="HTTP请求和响应的结构？"><a href="#HTTP请求和响应的结构？" class="headerlink" title="HTTP请求和响应的结构？"></a>HTTP请求和响应的结构？</h1><p>http请求：</p>
+<p>1、请求行：方法名（post)/url/协议及版本（http1.1)</p>
+<p>2、请求头：Accept: 接收的数据类型；Referer: 目标来源；content-type: 发送的数据类型；catch-control：缓存时间；cookie；if-none-match；if-modified-since；connection：keep-alive；host（必须！): 主机名和端口号；</p>
+<p>3、空行（\r\n)</p>
+<p>4、请求体：键值对的形式</p>
+<h1 id="http响应："><a href="#http响应：" class="headerlink" title="http响应："></a>http响应：</h1><p>1、响应行：协议及版本/状态码（200）</p>
+<p>2、响应头：content-type: 返回数据的类型；catch-control: 缓存时间；Etag（对应if-none-match)；last-modified（对应if-modified-since）</p>
+<p>3、空行（\r\n）</p>
+<p>4、响应体：即返回的数据</p>
+
       
     </div>
 
@@ -445,6 +506,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/前端学习/" rel="tag"># 前端学习</a>
+          
+            <a href="/tags/http/" rel="tag"># http</a>
+          
+            <a href="/tags/面试经验/" rel="tag"># 面试经验</a>
+          
+        </div>
+      
 
       
       
@@ -454,8 +525,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/29/前端爬坑日记，你在初入vue项目开发过程中可能会掉进的坑/" rel="next" title="前端爬坑日记，你在初入vue项目开发过程中可能会掉进的坑">
-                <i class="fa fa-chevron-left"></i> 前端爬坑日记，你在初入vue项目开发过程中可能会掉进的坑
+              <a href="/2018/12/29/React学习笔记-从Vue出发学React/" rel="next" title="React学习笔记-从Vue出发学React">
+                <i class="fa fa-chevron-left"></i> React学习笔记-从Vue出发学React
               </a>
             
           </div>
@@ -511,8 +582,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -529,7 +609,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -546,7 +626,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -563,7 +645,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -619,6 +709,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP协议是什么？"><span class="nav-number">1.</span> <span class="nav-text">HTTP协议是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP协议位于计算机网络的哪一层？"><span class="nav-number">2.</span> <span class="nav-text">HTTP协议位于计算机网络的哪一层？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP1-0-HTTP1-1的区别？"><span class="nav-number">3.</span> <span class="nav-text">HTTP1.0,HTTP1.1的区别？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP2-0的理解？"><span class="nav-number">4.</span> <span class="nav-text">HTTP2.0的理解？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTPS的理解？"><span class="nav-number">5.</span> <span class="nav-text">HTTPS的理解？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置cookie的方式："><span class="nav-number">6.</span> <span class="nav-text">设置cookie的方式：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#强缓存和协商缓存？"><span class="nav-number">7.</span> <span class="nav-text">强缓存和协商缓存？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP请求和响应的结构？"><span class="nav-number">8.</span> <span class="nav-text">HTTP请求和响应的结构？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http响应："><span class="nav-number">9.</span> <span class="nav-text">http响应：</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
