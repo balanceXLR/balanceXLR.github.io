@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-CN">
+<html class="theme-next gemini use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -80,7 +80,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Gemini',
     version: '6.6.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
@@ -104,19 +104,18 @@
 
 
 
-  <meta name="description" content="这篇文章是记录我在vue项目开发中遇到的各种巨坑，希望看了能对你有一些帮助，这篇文章会长期更新">
-<meta name="keywords" content="Vue">
+  <meta name="description" content="文章记录了我在vue项目开发中遇到的各种巨坑，希望看了能对你有一些帮助（长期更新）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue踩坑笔记">
 <meta property="og:url" content="http://yoursite.com/2019/01/09/Vue踩坑笔记/index.html">
 <meta property="og:site_name" content="戏铃人">
-<meta property="og:description" content="这篇文章是记录我在vue项目开发中遇到的各种巨坑，希望看了能对你有一些帮助，这篇文章会长期更新">
+<meta property="og:description" content="文章记录了我在vue项目开发中遇到的各种巨坑，希望看了能对你有一些帮助（长期更新）">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://cn.vuejs.org/images/data.png">
-<meta property="og:updated_time" content="2019-01-09T09:16:55.562Z">
+<meta property="og:updated_time" content="2019-01-09T09:43:12.226Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue踩坑笔记">
-<meta name="twitter:description" content="这篇文章是记录我在vue项目开发中遇到的各种巨坑，希望看了能对你有一些帮助，这篇文章会长期更新">
+<meta name="twitter:description" content="文章记录了我在vue项目开发中遇到的各种巨坑，希望看了能对你有一些帮助（长期更新）">
 <meta name="twitter:image" content="https://cn.vuejs.org/images/data.png">
 
 
@@ -237,23 +236,6 @@
         
         
           
-          <li class="menu-item menu-item-tags">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-        
-        
-        
-          
           <li class="menu-item menu-item-categories">
 
     
@@ -308,9 +290,6 @@
   
 
   
-    
-
-  
 
   
 </nav>
@@ -330,6 +309,9 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
           
           <div id="content" class="content">
             
@@ -393,7 +375,7 @@
                 
               
 
-              <time title="创建时间：2019-01-09 14:02:23 / 修改时间：17:16:55" itemprop="dateCreated datePublished" datetime="2019-01-09T14:02:23+08:00">2019-01-09</time>
+              <time title="创建时间：2019-01-09 14:02:23 / 修改时间：17:43:12" itemprop="dateCreated datePublished" datetime="2019-01-09T14:02:23+08:00">2019-01-09</time>
             
 
             
@@ -449,7 +431,7 @@
       
 
       
-        <p>这篇文章是记录我在vue项目开发中遇到的各种巨坑，希望看了能对你有一些帮助，这篇文章会长期更新<br><a id="more"></a></p>
+        <p>文章记录了我在vue项目开发中遇到的各种巨坑，希望看了能对你有一些帮助（长期更新）<br><a id="more"></a></p>
 <h1 id="Vue中使用sass"><a href="#Vue中使用sass" class="headerlink" title="Vue中使用sass"></a>Vue中使用sass</h1><p>首先通过以下代码安装sass的依赖：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i sass-loader node-sass - s</span><br></pre></td></tr></table></figure></p>
 <p>然后在webepack.base.conf.js目录下配置以下代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: <span class="regexp">/\.sass$/</span>,</span><br><span class="line">    loaders: [<span class="string">'style'</span>, <span class="string">'css'</span>, <span class="string">'sass'</span>]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
 <p>然后坑就来了</p>
@@ -526,12 +508,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Vue/" rel="tag"># Vue</a>
-          
-        </div>
-      
 
       
       
@@ -571,6 +547,10 @@
           </div>
           
 
+  
+    <div id="gitalk-container">
+    </div>
+    
   
 
 
@@ -663,13 +643,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -776,7 +750,7 @@
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
 
 
 
@@ -869,6 +843,13 @@
   
   
 
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
   
   <script src="/js/src/scrollspy.js?v=6.6.0"></script>
 <script src="/js/src/post-details.js?v=6.6.0"></script>
@@ -896,6 +877,32 @@
 
 
 
+
+
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+
+  
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.css">
+
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+   <script>
+        var gitalk = new Gitalk({
+          clientID: 'cfadfe418a8546ca2791',
+          clientSecret: 'aee5c7b3ad3e597289c332fecbad8c206b897991',
+          repo: '1465799166.github.io',
+          owner: '1465799166',
+          admin: ['1465799166'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+       </script>
 
 
   
