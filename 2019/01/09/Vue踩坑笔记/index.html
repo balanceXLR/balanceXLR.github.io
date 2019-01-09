@@ -104,17 +104,20 @@
 
 
 
-  <meta name="description" content="life is not easy, whatever, not tough">
+  <meta name="description" content="这篇文章是记录我在vue项目开发中遇到的各种巨坑，希望看了能对你有一些帮助，这篇文章会长期更新">
+<meta name="keywords" content="Vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue踩坑笔记">
 <meta property="og:url" content="http://yoursite.com/2019/01/09/Vue踩坑笔记/index.html">
 <meta property="og:site_name" content="戏铃人">
-<meta property="og:description" content="life is not easy, whatever, not tough">
+<meta property="og:description" content="这篇文章是记录我在vue项目开发中遇到的各种巨坑，希望看了能对你有一些帮助，这篇文章会长期更新">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-09T06:02:23.412Z">
+<meta property="og:image" content="https://cn.vuejs.org/images/data.png">
+<meta property="og:updated_time" content="2019-01-09T09:16:55.562Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue踩坑笔记">
-<meta name="twitter:description" content="life is not easy, whatever, not tough">
+<meta name="twitter:description" content="这篇文章是记录我在vue项目开发中遇到的各种巨坑，希望看了能对你有一些帮助，这篇文章会长期更新">
+<meta name="twitter:image" content="https://cn.vuejs.org/images/data.png">
 
 
 
@@ -390,12 +393,34 @@
                 
               
 
-              <time title="创建时间：2019-01-09 14:02:23" itemprop="dateCreated datePublished" datetime="2019-01-09T14:02:23+08:00">2019-01-09</time>
+              <time title="创建时间：2019-01-09 14:02:23 / 修改时间：17:16:55" itemprop="dateCreated datePublished" datetime="2019-01-09T14:02:23+08:00">2019-01-09</time>
             
 
+            
+              
+
+              
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术沉淀/" itemprop="url" rel="index"><span itemprop="name">技术沉淀</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -424,7 +449,63 @@
       
 
       
-        
+        <p>这篇文章是记录我在vue项目开发中遇到的各种巨坑，希望看了能对你有一些帮助，这篇文章会长期更新<br><a id="more"></a></p>
+<h1 id="Vue中使用sass"><a href="#Vue中使用sass" class="headerlink" title="Vue中使用sass"></a>Vue中使用sass</h1><p>首先通过以下代码安装sass的依赖：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i sass-loader node-sass - s</span><br></pre></td></tr></table></figure></p>
+<p>然后在webepack.base.conf.js目录下配置以下代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: <span class="regexp">/\.sass$/</span>,</span><br><span class="line">    loaders: [<span class="string">'style'</span>, <span class="string">'css'</span>, <span class="string">'sass'</span>]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<p>然后坑就来了</p>
+<p>1.如果你要引入sass文件，一定要使用.scss后缀，sass会导致你的css代码无法兼容；</p>
+<p>2.不要把你的sass文件引入到main.js这个入口文件中，它是无法解析的；可以通过以下方法实现：</p>
+<p>安装以下依赖<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i sass-resources-loader -s</span><br></pre></td></tr></table></figure></p>
+<p>在build目录下的utils.js的这个位置配置以下代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scss: generateLoaders(<span class="string">'sass'</span>).concat(</span><br><span class="line">    &#123;</span><br><span class="line">        loader: <span class="string">'sass-resources-loader'</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">            resources: path.resolve(__dirname, <span class="string">'../src/style/sass/all.scss'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<h1 id="组件传值，路由传值"><a href="#组件传值，路由传值" class="headerlink" title="组件传值，路由传值"></a>组件传值，路由传值</h1><p>在vue中组件传值会经常出现，包括父-&gt;子，子-&gt;父，兄弟之间三种情况，详情可参考我的另一篇文章<a href="https://blog.csdn.net/m0_37782372/article/details/80942627" target="_blank" rel="noopener">https://blog.csdn.net/m0_37782372/article/details/80942627</a></p>
+<p>这里要说的一个巨坑是这么一种情况：</p>
+<p>你的兄弟组件之间传值是跨路由的，其实正常来说是不会用组件传值的方式的，但是这样会有什么后果呢？</p>
+<p>你的值在兄弟组件接收到了，但是无法实现动态更新！</p>
+<p>所以在敲代码前一定要看清楚是不是跨路由了！</p>
+<p>说道路由传参，又有一个巨坑，先上代码：</p>
+<p>传参<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$router.push(&#123;</span><br><span class="line">    path: <span class="string">'practise'</span>,</span><br><span class="line">    name: <span class="string">'Practise'</span>,</span><br><span class="line">    params: &#123;</span><br><span class="line">        titleMsg: <span class="keyword">this</span>.subject</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>接收<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> msg = <span class="keyword">this</span>.$route.params.titleMsg</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码是没有问题的（我是真怕放了错误代码让人先入为主，跟我一样掉坑里了）</p>
+<p>1.传参要注意发送位置是$router，是有r的，接收位置是$route，是没有r的！</p>
+<p>2.如果你的路由跳转要带参数，就像上面那种情况，一定要使用name跳转！一定要使用name跳转！一定要使用name跳转！，</p>
+<p>不然你只能接收一个undefined了！</p>
+<h1 id="父组件控制子组件显示"><a href="#父组件控制子组件显示" class="headerlink" title="父组件控制子组件显示"></a>父组件控制子组件显示</h1><p>// 通过绑定参数showEnter控制子组件显示，需要加上sync修饰符<br>// 子组件中通过prop接收参数，并使用另一个变量对接收到的参数进行操作，这里使用showDetails进行操作，当它变化时，通过’update:showDetail’传递参数，告知父组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;drug-pass :drugInfo=&quot;drugInfo&quot; :showEnter.sync=&quot;showEnter&quot; ref=&quot;drugPass&quot;&gt;&lt;/drug-pass&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">props: &#123;</span><br><span class="line">    showDetail: &#123;</span><br><span class="line">        type: <span class="built_in">Boolean</span>,</span><br><span class="line">        <span class="keyword">default</span>: <span class="literal">false</span></span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line">watch: &#123;</span><br><span class="line">    showDetail(val) &#123;</span><br><span class="line">        <span class="keyword">this</span>.showDetails = val</span><br><span class="line">    &#125;,</span><br><span class="line">    showDetails(val) &#123;</span><br><span class="line">        <span class="keyword">this</span>.$emit(<span class="string">'update:showDetail'</span>, val)</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="路由跳转涉及eventBus传参"><a href="#路由跳转涉及eventBus传参" class="headerlink" title="路由跳转涉及eventBus传参"></a>路由跳转涉及eventBus传参</h1><p>在vue中我们通常使用eventBus进行非父子关系的组件通信，eventBus说白了就是一个临时的vue文件，用于储存变量，如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> eventBus = <span class="keyword">new</span> Vue()</span><br></pre></td></tr></table></figure></p>
+<p>传参的方式是由a组件发送emit事件，b组件通过on事件监听获取传值，如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.vue</span></span><br><span class="line">eventBus.$emit(<span class="string">'msg'</span>, testMsg)</span><br><span class="line"></span><br><span class="line"><span class="comment">// b.vue</span></span><br><span class="line">eventBus.$on(<span class="string">'msg'</span>, (res) =&gt; &#123;</span><br><span class="line">    <span class="keyword">this</span>.list = testMsg</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.list)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.list)</span><br></pre></td></tr></table></figure></p>
+<p>通常来说，这样的写法就能实现组件通信了。</p>
+<p>注意b组件里使用了箭头函数，使函数中的this指向当前vue。如果不使用箭头函数，必须使用外部的临时this，因为普通的函数会改变this的指向，如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> _this = <span class="keyword">this</span></span><br><span class="line">eventBus.$on(<span class="string">'msg'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">    _this.list = res</span><br><span class="line">    <span class="built_in">console</span>.log(_this.list)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(_this.list)</span><br></pre></td></tr></table></figure></p>
+<p>重点来了，当组件传参涉及路由跳转时，还会这么顺利吗？答案是：否！</p>
+<p>上面的代码中都在$on的内外打印了this.list，你会发现，当从a组件跳转b组件时，$on内部的list更新了，而外部却没有更新，从结果上的表现来说就是：怎么data更新了视图没有更新？！！</p>
+<p>这里我们需要知道的是vue-router跳转与vue的生命周期的关系，从a组件跳转b组件，生命周期如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a beforeCreate</span><br><span class="line">a created</span><br><span class="line">a beforeMounte</span><br><span class="line">a mounted</span><br><span class="line">b beforeCreate</span><br><span class="line">b created</span><br><span class="line">b beforeMount</span><br><span class="line">a beforeDestroy</span><br><span class="line">a destroy</span><br><span class="line">b mounted</span><br></pre></td></tr></table></figure></p>
+<p>再看$on的执行时机，如果你通过click事件触发emit，那么on事件就算放在b的created钩子里，也无法获取，打印顺序如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a beforeCreate</span><br><span class="line">a created</span><br><span class="line">a beforeMounte</span><br><span class="line">a mounted</span><br><span class="line">msg</span><br><span class="line">b beforeCreate</span><br><span class="line">b created</span><br><span class="line">b beforeMount</span><br><span class="line">a beforeDestroy</span><br><span class="line">a destroy</span><br><span class="line">b mounted</span><br></pre></td></tr></table></figure></p>
+<p>此时b组件的生命周期还没开始，因此此时就算使用this.list = testMsg也无法更新视图，因为此时的this根本不指向当前vue！</p>
+<p>破案了：在beforeDestroy里执行this.$emit()</p>
+<h1 id="on和-emit"><a href="#on和-emit" class="headerlink" title="$on和$emit"></a>$on和$emit</h1><p>先说结论：vue中组件通信通过$on和$emit来实现，但需要注意的是<strong>$on必须在$emit之前就存在</strong><br>引用vue官方文档对于$on的描述：</p>
+<blockquote>
+<p>监听当前实例上的自定义事件。事件可以由vm.$emit触发。回调函数会接收所有传入事件触发函数的额外参数。</p>
+</blockquote>
+<p>也就是说$emit事件必须在$on已经建立的情况下发送，因此，如果需要在组件创建时就监听到emit事件，可通过nextTick方法，延迟emit事件的发送：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.vue</span></span><br><span class="line">created() &#123;</span><br><span class="line">    <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        eventBus.$emit(<span class="string">'defaultValue'</span>, <span class="literal">true</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// b.vue</span></span><br><span class="line">created() &#123;</span><br><span class="line">    eventBus.$on(<span class="string">'defaultValue'</span>, res =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="引用对象的属性修改无法触发视图更新"><a href="#引用对象的属性修改无法触发视图更新" class="headerlink" title="引用对象的属性修改无法触发视图更新"></a>引用对象的属性修改无法触发视图更新</h1><h2 id="现象描述"><a href="#现象描述" class="headerlink" title="现象描述"></a>现象描述</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>vue<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/vue/2.1.3/vue.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123; tempArr &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">"handler"</span>&gt;</span>add<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">            el: <span class="string">'#app'</span>,</span></span><br><span class="line"><span class="undefined">            data() &#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="undefined">                    tempArr: []</span></span><br><span class="line"><span class="undefined">                &#125;</span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="undefined">            created() &#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">this</span>.tempArr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="undefined">            methods: &#123;</span></span><br><span class="line"><span class="undefined">                handler() &#123;</span></span><br><span class="line"><span class="javascript">                    <span class="built_in">console</span>.log(<span class="string">'click'</span>)</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">this</span>.tempArr[<span class="number">3</span>] = <span class="number">4</span></span></span><br><span class="line"><span class="javascript">                    <span class="built_in">console</span>.log(<span class="keyword">this</span>.tempArr)</span></span><br><span class="line"><span class="undefined">                &#125;</span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="undefined">        &#125;)</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上述代码期望的结果是通过点击add按钮，为tempArr增加一个成员。<br>在控制台可以看到tempArr已经变成[1,2,3,4]，但是视图却没有发生相应变化。</p>
+<p>通过查阅相关资料，终于知道原来是这么一回事：</p>
+<h2 id="vue响应式原理"><a href="#vue响应式原理" class="headerlink" title="vue响应式原理"></a>vue响应式原理</h2><p><img src="https://cn.vuejs.org/images/data.png" alt="vue响应式原理"></p>
+<ul>
+<li>在vue2.x中，vue在初始化实例时，会通过<code>Object.defineProperty</code>为所有data中的属性创建getter/setter此方法，</li>
+<li><strong>watcher</strong>对象就可以依赖于getter方法，在渲染过程中展示通过getter方法得到的data；当data变化时，触发setter方法，此时会通知watcher重新计算，重新渲染视图</li>
+<li>由于Object.observe()方法已被废弃，Vue目前无法监听到<strong>对象属性的添加或删除</strong>，因此后续通过其他方式（如异步事件）为已经创建的实例（例子中就是tempArr）添加的新的属性，是不会添加getter/setter转化的。</li>
+<li>vue3.x将通过Proxy来实现双向绑定，解决这个问题</li>
+</ul>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>vue2.x提供了set方法来解决这个问题：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.set(object, key, value)</span><br><span class="line"><span class="comment">// for example</span></span><br><span class="line"><span class="keyword">this</span>.$set(<span class="keyword">this</span>.tempArr, <span class="number">3</span>, <span class="number">4</span>)</span><br></pre></td></tr></table></figure></p>
+<h1 id="多vue文件编译后，script标签处理问题"><a href="#多vue文件编译后，script标签处理问题" class="headerlink" title="多vue文件编译后，script标签处理问题"></a>多vue文件编译后，script标签处理问题</h1><h2 id="现象描述-1"><a href="#现象描述-1" class="headerlink" title="现象描述"></a>现象描述</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">"handler"</span>&gt;</span>click<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> item = sessionStorage.getItem(<span class="string">'item'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(<span class="string">'out'</span>, item)</span></span><br><span class="line"><span class="javascript">    <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="undefined">        data() &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">                item: sessionStorage.getItem(<span class="string">'item'</span>)</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;,</span></span><br><span class="line"><span class="undefined">        created() &#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">'in'</span>, <span class="keyword">this</span>.item)</span></span><br><span class="line"><span class="undefined">        &#125;,</span></span><br><span class="line"><span class="undefined">        methods: &#123;</span></span><br><span class="line"><span class="undefined">            handler() &#123;</span></span><br><span class="line"><span class="javascript">                sessionStorage.removeItem(<span class="string">'item'</span>)</span></span><br><span class="line"><span class="javascript">                <span class="keyword">this</span>.$router.push(&#123;</span></span><br><span class="line"><span class="javascript">                    path: <span class="string">'/category'</span></span></span><br><span class="line"><span class="undefined">                &#125;)</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(<span class="string">'haha'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="undefined">        data() &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在解决一个需求时遇到这样一个情况，通过vue-router从a页面跳转到b页面，清空sessionStroage，但是无意间返回发现，在export default{}外的js没有被重新执行，内部的js被重新执行。</p>
+<h2 id="vue项目编译过程"><a href="#vue项目编译过程" class="headerlink" title="vue项目编译过程"></a>vue项目编译过程</h2><blockquote>
+<p>vue-loader 会解析文件，提取每个语言块，如有必要会通过其它 loader 处理，最后将他们组装成一个 ES Module，它的默认导出是一个 Vue.js 组件选项的对象。</p>
+</blockquote>
+<p>由于浏览器无法识别<code>.vue</code>文件，<code>.vue</code>文件会通过vue-loader解析，webpack打包在浏览器中的识别结果（编译后）是<code>.js</code>文件。打包的结果会将所有vue文件的export default部分做逻辑归并，而此外的script会按顺序执行。<br>也就是说，单页的vue项目，在export default外的js会在项目启动时全部执行</p>
+<h2 id="解决方法-1"><a href="#解决方法-1" class="headerlink" title="解决方法"></a>解决方法</h2><p>常量可以定义在export default外，变量定义在export default内</p>
+
       
     </div>
 
@@ -444,6 +525,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vue/" rel="tag"># Vue</a>
+          
+        </div>
       
 
       
@@ -507,8 +594,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -544,7 +640,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -569,7 +667,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -625,6 +725,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue中使用sass"><span class="nav-number">1.</span> <span class="nav-text">Vue中使用sass</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组件传值，路由传值"><span class="nav-number">2.</span> <span class="nav-text">组件传值，路由传值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#父组件控制子组件显示"><span class="nav-number">3.</span> <span class="nav-text">父组件控制子组件显示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#路由跳转涉及eventBus传参"><span class="nav-number">4.</span> <span class="nav-text">路由跳转涉及eventBus传参</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#on和-emit"><span class="nav-number">5.</span> <span class="nav-text">$on和$emit</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引用对象的属性修改无法触发视图更新"><span class="nav-number">6.</span> <span class="nav-text">引用对象的属性修改无法触发视图更新</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#现象描述"><span class="nav-number">6.1.</span> <span class="nav-text">现象描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue响应式原理"><span class="nav-number">6.2.</span> <span class="nav-text">vue响应式原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方法"><span class="nav-number">6.3.</span> <span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多vue文件编译后，script标签处理问题"><span class="nav-number">7.</span> <span class="nav-text">多vue文件编译后，script标签处理问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#现象描述-1"><span class="nav-number">7.1.</span> <span class="nav-text">现象描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue项目编译过程"><span class="nav-number">7.2.</span> <span class="nav-text">vue项目编译过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方法-1"><span class="nav-number">7.3.</span> <span class="nav-text">解决方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
