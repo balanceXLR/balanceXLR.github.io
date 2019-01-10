@@ -108,11 +108,11 @@
   <meta name="description" content="1.概述本文记录了学习typescript的全过程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TypeScript学习">
-<meta property="og:url" content="http://yoursite.com/2018/12/29/TypeScript学习/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/10/29/TypeScript学习/index.html">
 <meta property="og:site_name" content="戏铃人">
 <meta property="og:description" content="1.概述本文记录了学习typescript的全过程">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-09T09:56:17.460Z">
+<meta property="og:updated_time" content="2019-01-10T02:54:52.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TypeScript学习">
 <meta name="twitter:description" content="1.概述本文记录了学习typescript的全过程">
@@ -122,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/29/TypeScript学习/">
+  <link rel="canonical" href="http://yoursite.com/2018/10/29/TypeScript学习/">
 
 
 
@@ -369,7 +369,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/29/TypeScript学习/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/29/TypeScript学习/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Oliver Shen">
@@ -412,7 +412,7 @@
                 
               
 
-              <time title="创建时间：2018-12-29 18:05:10" itemprop="dateCreated datePublished" datetime="2018-12-29T18:05:10+08:00">2018-12-29</time>
+              <time title="创建时间：2018-10-29 18:05:10" itemprop="dateCreated datePublished" datetime="2018-10-29T18:05:10+08:00">2018-10-29</time>
             
 
             
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-09 17:56:17" itemprop="dateModified" datetime="2019-01-09T17:56:17+08:00">2019-01-09</time>
+                <time title="修改时间：2019-01-10 10:54:52" itemprop="dateModified" datetime="2019-01-10T10:54:52+08:00">2019-01-10</time>
               
             
           </span>
@@ -460,7 +460,7 @@
 
           
           
-             <span id="/2018/12/29/TypeScript学习/" class="leancloud_visitors" data-flag-title="TypeScript学习">
+             <span id="/2018/10/29/TypeScript学习/" class="leancloud_visitors" data-flag-title="TypeScript学习">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -590,10 +590,10 @@
   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverse</span>(<span class="params">x: number</span>): <span class="title">number</span>;</span></span><br><span class="line"><span class="function"><span class="title">function</span> <span class="title">reverse</span>(<span class="params">x: string</span>): <span class="title">string</span>;</span></span><br><span class="line"><span class="function"><span class="title">function</span> <span class="title">reverse</span>(<span class="params">x: number | string</span>): <span class="title">number</span> | <span class="title">string</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> x === <span class="string">'number'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Number</span>(x.toString().split(<span class="string">''</span>).reverse().join(<span class="string">''</span>));</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> x === <span class="string">'string'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> x.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>  上述代码中，前两次函数声明为定义，最后一次为实现</p>
 <h3 id="4-8-类型断言"><a href="#4-8-类型断言" class="headerlink" title="4.8.类型断言"></a>4.8.类型断言</h3><p>在4.4联合类型中提到，只能访问联合类型的共有属性和方法。<br>在ts中可以通过类型断言绕过类型判断，如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLength</span>(<span class="params">something: string | number</span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ((<span class="xml"><span class="tag">&lt;<span class="name">string</span>&gt;</span>something).length) &#123;</span></span><br><span class="line"><span class="xml">        console.log('string' + something)</span></span><br><span class="line">        return (&lt;string&gt;something).length;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        console.log('notstring' + something)</span><br><span class="line">        return something.toString().length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">getLength(1) // 1</span><br><span class="line">getLength('2') // 2</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLength</span>(<span class="params">something: string | number</span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ((&lt;string&gt;something).length) &#123;</span><br><span class="line">        console.log('string' + something)</span><br><span class="line">        return (&lt;string&gt;something).length;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        console.log('notstring' + something)</span><br><span class="line">        return something.toString().length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">getLength(1) // 1</span><br><span class="line">getLength('2') // 2</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>可以看出，类型断言并没有对类型进行转换，上例中只是把number当作有string具有对方法和属性罢了。<br>同样，类型断言不允许断言成联合类型中不存在对类型，如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toBoolean</span>(<span class="params">something: string | number</span>): <span class="title">boolean</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">boolean</span>&gt;</span>something; // error</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>可以看出，类型断言并没有对类型进行转换，上例中只是把number当作有string具有对方法和属性罢了。<br>同样，类型断言不允许断言成联合类型中不存在对类型，如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toBoolean</span>(<span class="params">something: string | number</span>): <span class="title">boolean</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &lt;boolean&gt;something; // error</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="4-9-声明文件"><a href="#4-9-声明文件" class="headerlink" title="4.9.声明文件"></a>4.9.声明文件</h3><p>// TODO 这块有待理解</p>
 <h3 id="4-10-内置对象"><a href="#4-10-内置对象" class="headerlink" title="4.10.内置对象"></a>4.10.内置对象</h3><p>JavaScript中的很多内置对象在ts中也可以直接使用</p>
 <ul>
@@ -615,7 +615,7 @@
 </li>
 </ul>
 <p>其中没有赋值的项会根据上一个赋值的项进行递增，但是如果赋值出现重复来，ts不会报错，只是会将最后一个重复的项视为有效项，如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">enum Days &#123;Sun = <span class="number">3</span>, Mon = <span class="number">1</span>, Tue, Wed, Thu, Fri, Sat&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Days[<span class="string">"Sun"</span>] === <span class="number">3</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(Days[<span class="string">"Wed"</span>] === <span class="number">3</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(Days[<span class="number">3</span>] === <span class="string">"Sun"</span>); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(Days[<span class="number">3</span>] === <span class="string">"Wed"</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
-<p>如果手动赋值的值为非数字，需要使用类型断言来无视tsc的类型检查，如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enum Days &#123;Sun = <span class="number">7</span>, Mon, Tue, Wed, Thu, Fri, Sat = <span class="xml"><span class="tag">&lt;<span class="name">any</span>&gt;</span>"S"&#125;;</span></span><br></pre></td></tr></table></figure></p>
+<p>如果手动赋值的值为非数字，需要使用类型断言来无视tsc的类型检查，如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enum Days &#123;Sun = <span class="number">7</span>, Mon, Tue, Wed, Thu, Fri, Sat = &lt;any&gt;"S"&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>可以为枚举项赋值为计算所得值，但计算所得项后必须是手动赋值项，否则会因为无法获得初始值而报错，如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">enum Color &#123;Red, Green, Blue = <span class="string">"blue"</span>.length&#125;;</span><br><span class="line">enum Color &#123;Red = <span class="string">"red"</span>.length, Green, Blue&#125;; <span class="comment">// error</span></span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>常数枚举<br>通过常数枚举，可以是枚举定义在编译时被删除，如：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ts</span></span><br><span class="line"><span class="keyword">const</span> enum Directions &#123;</span><br><span class="line">    Up,</span><br><span class="line">    Down,</span><br><span class="line">    Left,</span><br><span class="line">    Right</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];</span><br><span class="line"></span><br><span class="line"><span class="comment">// js</span></span><br><span class="line"><span class="keyword">var</span> directions = [<span class="number">0</span> <span class="comment">/* Up */</span>, <span class="number">1</span> <span class="comment">/* Down */</span>, <span class="number">2</span> <span class="comment">/* Left */</span>, <span class="number">3</span> <span class="comment">/* Right */</span>];</span><br></pre></td></tr></table></figure>
@@ -717,8 +717,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/29/正则表达式/" rel="next" title="正则表达式">
-                <i class="fa fa-chevron-left"></i> 正则表达式
+              <a href="/2018/09/14/点到即止，对HTTP协议的理解/" rel="next" title="点到即止，对HTTP协议的理解">
+                <i class="fa fa-chevron-left"></i> 点到即止，对HTTP协议的理解
               </a>
             
           </div>
@@ -727,8 +727,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/29/点到即止，对HTTP协议的理解/" rel="prev" title="点到即止，对HTTP协议的理解">
-                点到即止，对HTTP协议的理解 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/11/13/深入浅出理解JS原型链继承/" rel="prev" title="深入浅出理解JS原型链继承">
+                深入浅出理解JS原型链继承 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -798,61 +798,6 @@
               <p class="site-description motion-element" itemprop="description">life is not easy, whatever, not tough</p>
           </div>
 
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">6</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">4</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">4</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
           
 
           
@@ -1220,6 +1165,83 @@
   
 
   
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
 
   
 
