@@ -105,24 +105,26 @@
 
 
 
-  <meta name="description" content="本文主要介绍了实际项目中可能遇到的标签处理问题">
+  <meta name="description" content="虽然对js中的一些常见原理问题有所耳闻，但却一直没有整理沉淀下来，本文记录了我对’JavaScript单线程异步’的理解。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="你可能会遇到的标签样式问题">
-<meta property="og:url" content="http://yoursite.com/2019/01/10/你可能会遇到的标签样式问题/index.html">
+<meta property="og:title" content="全面理解单线程的JavaScript">
+<meta property="og:url" content="http://yoursite.com/2019/01/10/全面理解单线程的JavaScript/index.html">
 <meta property="og:site_name" content="戏铃人">
-<meta property="og:description" content="本文主要介绍了实际项目中可能遇到的标签处理问题">
+<meta property="og:description" content="虽然对js中的一些常见原理问题有所耳闻，但却一直没有整理沉淀下来，本文记录了我对’JavaScript单线程异步’的理解。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-10T03:41:24.674Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/704770-274c37d32c2791cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp">
+<meta property="og:updated_time" content="2019-01-10T08:48:15.157Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你可能会遇到的标签样式问题">
-<meta name="twitter:description" content="本文主要介绍了实际项目中可能遇到的标签处理问题">
+<meta name="twitter:title" content="全面理解单线程的JavaScript">
+<meta name="twitter:description" content="虽然对js中的一些常见原理问题有所耳闻，但却一直没有整理沉淀下来，本文记录了我对’JavaScript单线程异步’的理解。">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/704770-274c37d32c2791cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/10/你可能会遇到的标签样式问题/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/10/全面理解单线程的JavaScript/">
 
 
 
@@ -132,7 +134,7 @@
   };
 </script>
 
-  <title>你可能会遇到的标签样式问题 | 戏铃人</title>
+  <title>全面理解单线程的JavaScript | 戏铃人</title>
   
 
 
@@ -369,7 +371,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/你可能会遇到的标签样式问题/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/全面理解单线程的JavaScript/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Oliver Shen">
@@ -386,7 +388,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">你可能会遇到的标签样式问题
+          <h1 class="post-title" itemprop="name headline">全面理解单线程的JavaScript
 
               
             
@@ -412,7 +414,7 @@
                 
               
 
-              <time title="创建时间：2019-01-10 11:27:14 / 修改时间：11:41:24" itemprop="dateCreated datePublished" datetime="2019-01-10T11:27:14+08:00">2019-01-10</time>
+              <time title="创建时间：2019-01-10 13:54:36 / 修改时间：16:48:15" itemprop="dateCreated datePublished" datetime="2019-01-10T13:54:36+08:00">2019-01-10</time>
             
 
             
@@ -423,24 +425,6 @@
           </span>
 
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/知识沉淀/" itemprop="url" rel="index"><span itemprop="name">知识沉淀</span></a></span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -448,7 +432,7 @@
 
           
           
-             <span id="/2019/01/10/你可能会遇到的标签样式问题/" class="leancloud_visitors" data-flag-title="你可能会遇到的标签样式问题">
+             <span id="/2019/01/10/全面理解单线程的JavaScript/" class="leancloud_visitors" data-flag-title="全面理解单线程的JavaScript">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -479,46 +463,38 @@
       
 
       
-        <p>本文主要介绍了实际项目中可能遇到的标签处理问题<br><a id="more"></a></p>
-<h2 id="div"><a href="#div" class="headerlink" title="div"></a>div</h2><ul>
-<li>可编辑<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">contenteidtable</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
+        <p>虽然对js中的一些常见原理问题有所耳闻，但却一直没有整理沉淀下来，本文记录了我对’JavaScript单线程异步’的理解。<br><a id="more"></a><br>参考链接：<a href="https://github.com/JChehe/blog/blob/master/posts/%E5%85%B3%E4%BA%8EJavaScript%E5%8D%95%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B.md" target="_blank" rel="noopener">关于JavaScript单线程的一些事</a></p>
+<h1 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h1><blockquote>
+<p>进程和线程都是操作系统的概念。进程是应用程序的执行实例，每一个进程都是由私有的虚拟地址空间、代码、数据和其它系统资源所组成；进程在运行过程中能够申请创建和使用系统资源（如独立的内存区域等），这些资源也会随着进程的终止而被销毁。而线程则是进程内的一个独立执行单元，在不同的线程之间是可以共享进程资源的，所以在多线程的情况下，需要特别注意对临界资源的访问控制。在系统创建进程之后就开始启动执行进程的主线程，而进程的生命周期和这个主线程的生命周期一致，主线程的退出也就意味着进程的终止和销毁。主线程是由系统进程所创建的，同时用户也可以自主创建其它线程，这一系列的线程都会并发地运行于同一个进程中。</p>
+</blockquote>
+<p>也就是说，通常一个进程代表一个应用程序，而一个进程可以拥有多个线程，其生命周期与主线程同步</p>
+<h1 id="JavaScript为何选用单线程"><a href="#JavaScript为何选用单线程" class="headerlink" title="JavaScript为何选用单线程"></a>JavaScript为何选用单线程</h1><p>其实这与它的用途有关。作为浏览器脚本语言，JavaScript 的主要用途是与用户互动，以及操作 DOM。若以多线程的方式操作这些 DOM，则可能出现操作的冲突。假设有两个线程同时操作一个 DOM 元素，线程 1 要求浏览器删除 DOM，而线程 2 却要求修改 DOM 样式，这时浏览器就无法决定采用哪个线程的操作。当然，我们可以为浏览器引入“锁”的机制来解决这些冲突，但这会大大提高复杂性，所以 JavaScript 从诞生开始就选择了单线程执行。</p>
+<h1 id="Runtime"><a href="#Runtime" class="headerlink" title="Runtime"></a>Runtime</h1><p>JavaScript Runtime包括图中的所有内容：</p>
+<ul>
+<li>V8引擎<ul>
+<li>Memory Heap （进行内存分配）</li>
+<li>Call Stack （执行栈，真正执行js任务）</li>
 </ul>
-<h2 id="a"><a href="#a" class="headerlink" title="a"></a>a</h2><ul>
-<li>清空默认样式<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">	text-decoration: none; // 去除a标签默认下划线</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>, <span class="selector-tag">a</span><span class="selector-pseudo">:active</span>, <span class="selector-tag">a</span><span class="selector-pseudo">:link</span>, <span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;</span><br><span class="line">	color: #ddd; // 修改a标签默认颜色</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
+<li>Web APIs</li>
+<li>Event Loop (大名鼎鼎的事件循环)<br><img src="https://upload-images.jianshu.io/upload_images/704770-274c37d32c2791cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt=""></li>
 </ul>
-<h2 id="span"><a href="#span" class="headerlink" title="span"></a>span</h2><ul>
-<li><p>自动换行：当内容为非中文时，标签无法自动换行，使用下面当方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">span &#123;</span><br><span class="line">	word-break: break-all; // 当文字超出span标签长度时，自动换行，适用于所有其他标签</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>超出一行省略</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">span</span> &#123;</span><br><span class="line">	overflow: hidden;  // 超出不显示</span><br><span class="line">	text-overflow: ellipsis; // 超出省略</span><br><span class="line">	white-space: nowrap; // 单行显示</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>超出n行省略</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">span</span> &#123;</span><br><span class="line">	<span class="attribute">display</span>: -webkit-box;</span><br><span class="line">	<span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">	-webkit-line-clamp: 3; // 3代表3行</span><br><span class="line">	<span class="selector-tag">overflow</span>: <span class="selector-tag">hidden</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果不生效，可能是因为autoprefixer清理老式的代码，则使用以下代码：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">span</span> &#123;</span><br><span class="line">	<span class="attribute">display</span>: -webkit-box;</span><br><span class="line">	<span class="comment">/* autoprefixer: off */</span></span><br><span class="line">	<span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">	-webkit-line-clamp: 3; // 3代表3行</span><br><span class="line">	<span class="selector-tag">overflow</span>: <span class="selector-tag">hidden</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<h2 id="Call-Stack"><a href="#Call-Stack" class="headerlink" title="Call Stack"></a>Call Stack</h2><p>执行栈是真正执行js的地方，存放着正在执行的任务，每个任务被称为帧（stack of frames）。<br>它遵循着后进先出的原则，保证了事件逻辑的正确性：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getInt</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> val</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPercent</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getInt(val)</span><br><span class="line">&#125;</span><br><span class="line">getPercent(val)</span><br></pre></td></tr></table></figure></p>
+<p><code>getPercent(val)</code>在执行时，在Call Stack中创建了第一帧，然后在执行到<code>getInt(val)</code>时创建了第二帧，此时第二帧会先于第一帧执行，当第二帧执行完毕出栈后，继续执行第一帧</p>
+<h2 id="Event-loop"><a href="#Event-loop" class="headerlink" title="Event loop"></a>Event loop</h2><p>大名鼎鼎的事件循环，它依赖于任务队列（queue）</p>
+<h3 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h3><p>所有的待执行任务会进入这个队列，并按照先进先出的原则供Call Stack执行。<br>同步事件会优先进入队列，异步事件会在执行完成后通过callback（回调函数）的形式进入队列。（详情参考JS异步编程）<br>由于Call Stack存放的是正在执行的任务，只有当Call Stack为空时，会去除任务队列的第一个任务放入并执行。</p>
+<h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><p>有了上面的知识基础，现在来看事件循环就非常清晰了。它是任务不断进入任务队列，并在Call Stack为空时向其压入一个任务的一个循环过程。<br>得益于异步思想，事件循环通常在执行完所有任务之前是永不阻塞的，不过也有例外，如debugger，alert等。</p>
+<h1 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h1><p>为什么要在这边讲浏览器呢？这要从一个基础的问题说起了：<br>JavaScript的宿主环境是什么？<br>就像java运行在java环境或是JVM中，JavaScript的宿主环境也就是运行环境就是我们最熟悉又<strong>最陌生的浏览器</strong>了。</p>
+<p>##多线程的浏览器<br>虽说JavaScript是单线程的脚本语言，但它的宿主环境确实多线程的。直到这里才解决了我多年的疑惑：JavaScript不是单线程的吗，那么异步事件到底交给谁去执行了呢？<br>通常一个浏览器会有多个进程，其最重要的渲染进程（浏览器内核）都会实现这几个线程：</p>
+<ul>
+<li>主线程</li>
+<li><strong>JavaScript引擎线程</strong> 进行着大量的同步事件的处理或执行</li>
+<li><strong>GUI渲染线程</strong> 负责页面的渲染，css的解析（重绘重排的执行）</li>
+<li><strong>事件触发线程</strong> 负责诸如点击事件的处理</li>
+<li><strong>定时器触发线程</strong> 负责setTimeout，setInterval等定时事件的处理</li>
+<li><strong>XHR线程</strong> 负责异步的http请求<br>其中<strong>JavaScript引擎线程</strong>与<strong>GUI渲染线程</strong>是互斥的，这也就解释了为什么javascript执行会阻塞页面渲染</li>
 </ul>
-<h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><ul>
-<li><p>清除默认样式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">	outline: none; // 清除focus默认样式</span><br><span class="line">	padding: 0; // 清除默认2pxpadding，1pxborder</span><br><span class="line">	border: 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置最大长度</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">maxlength</span>=<span class="string">"50"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ios中boder-radius继承<br>在ios中子元素会继承父元素的border-radius属性，因此需要手动设置子元素border-radius为0</p>
-</li>
-<li>ios内阴影<br>在ios中input上边会有内阴影，通过以下方式解决：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-appearance</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="textarea"><a href="#textarea" class="headerlink" title="textarea"></a>textarea</h2><ul>
-<li>清除默认样式，同input</li>
-<li>设置最大长度，同input</li>
-<li>禁止拉伸<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">textarea</span> &#123;</span><br><span class="line">	<span class="attribute">resize</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
+<h1 id="4核8线程cpu"><a href="#4核8线程cpu" class="headerlink" title="4核8线程cpu"></a>4核8线程cpu</h1><p>长期以来有一个问题，现在的4核8线程是否真的是支持8个线程并行呢？其实4核代表4个物理核，同时支持4个线程并行，所谓4核8线程。多出来的4个线程是用<strong>超线程技术</strong>实现的。对操作系统来说能同时执行8个任务。但在cpu层面，也不过是在io等待时执行另一个线程，把碎片时间利用起来。对cpu来说有几核就能同时执行几个任务。</p>
 
       
     </div>
@@ -549,8 +525,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/10/h5移动端适配/" rel="next" title="h5移动端适配">
-                <i class="fa fa-chevron-left"></i> h5移动端适配
+              <a href="/2019/01/10/你可能会遇到的标签样式问题/" rel="next" title="你可能会遇到的标签样式问题">
+                <i class="fa fa-chevron-left"></i> 你可能会遇到的标签样式问题
               </a>
             
           </div>
@@ -558,10 +534,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/10/全面理解单线程的JavaScript/" rel="prev" title="全面理解单线程的JavaScript">
-                全面理解单线程的JavaScript <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -708,7 +680,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#div"><span class="nav-number">1.</span> <span class="nav-text">div</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#a"><span class="nav-number">2.</span> <span class="nav-text">a</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#span"><span class="nav-number">3.</span> <span class="nav-text">span</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#input"><span class="nav-number">4.</span> <span class="nav-text">input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#textarea"><span class="nav-number">5.</span> <span class="nav-text">textarea</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#进程与线程"><span class="nav-number">1.</span> <span class="nav-text">进程与线程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript为何选用单线程"><span class="nav-number">2.</span> <span class="nav-text">JavaScript为何选用单线程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Runtime"><span class="nav-number">3.</span> <span class="nav-text">Runtime</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Call-Stack"><span class="nav-number">3.1.</span> <span class="nav-text">Call Stack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Event-loop"><span class="nav-number">3.2.</span> <span class="nav-text">Event loop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务队列"><span class="nav-number">3.2.1.</span> <span class="nav-text">任务队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件循环"><span class="nav-number">3.3.</span> <span class="nav-text">事件循环</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#浏览器"><span class="nav-number">4.</span> <span class="nav-text">浏览器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4核8线程cpu"><span class="nav-number">5.</span> <span class="nav-text">4核8线程cpu</span></a></li></ol></div>
             
 
           </div>
