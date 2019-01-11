@@ -105,24 +105,27 @@
 
 
 
-  <meta name="description" content="本文记录了项目中可能遇到的h5兼容性及适配问题">
+  <meta name="description" content="关于TCP连接的建立与释放的文章可谓是比比皆是，然而当初看完之后却仍是一知半解，直到最近重新拜读了谢希仁老师的《计算机网络》后，才对所谓的三次握手，四次挥手有了较正确的理解。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="h5移动端适配">
-<meta property="og:url" content="http://yoursite.com/2019/01/10/h5移动端适配/index.html">
+<meta property="og:title" content="正确理解TCP连接的三次握手，四次挥手">
+<meta property="og:url" content="http://yoursite.com/2019/01/11/正确理解TCP连接的三次握手，四次挥手/index.html">
 <meta property="og:site_name" content="戏铃人">
-<meta property="og:description" content="本文记录了项目中可能遇到的h5兼容性及适配问题">
+<meta property="og:description" content="关于TCP连接的建立与释放的文章可谓是比比皆是，然而当初看完之后却仍是一知半解，直到最近重新拜读了谢希仁老师的《计算机网络》后，才对所谓的三次握手，四次挥手有了较正确的理解。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-10T03:23:10.629Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190111115055999.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzgyMzcy,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190111115527638.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzgyMzcy,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-01-11T07:58:15.712Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="h5移动端适配">
-<meta name="twitter:description" content="本文记录了项目中可能遇到的h5兼容性及适配问题">
+<meta name="twitter:title" content="正确理解TCP连接的三次握手，四次挥手">
+<meta name="twitter:description" content="关于TCP连接的建立与释放的文章可谓是比比皆是，然而当初看完之后却仍是一知半解，直到最近重新拜读了谢希仁老师的《计算机网络》后，才对所谓的三次握手，四次挥手有了较正确的理解。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190111115055999.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzgyMzcy,size_16,color_FFFFFF,t_70">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/10/h5移动端适配/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/11/正确理解TCP连接的三次握手，四次挥手/">
 
 
 
@@ -132,7 +135,7 @@
   };
 </script>
 
-  <title>h5移动端适配 | 戏铃人</title>
+  <title>正确理解TCP连接的三次握手，四次挥手 | 戏铃人</title>
   
 
 
@@ -369,7 +372,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/h5移动端适配/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/正确理解TCP连接的三次握手，四次挥手/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Oliver Shen">
@@ -386,7 +389,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">h5移动端适配
+          <h1 class="post-title" itemprop="name headline">正确理解TCP连接的三次握手，四次挥手
 
               
             
@@ -412,7 +415,7 @@
                 
               
 
-              <time title="创建时间：2019-01-10 11:20:36 / 修改时间：11:23:10" itemprop="dateCreated datePublished" datetime="2019-01-10T11:20:36+08:00">2019-01-10</time>
+              <time title="创建时间：2019-01-11 11:32:13 / 修改时间：15:58:15" itemprop="dateCreated datePublished" datetime="2019-01-11T11:32:13+08:00">2019-01-11</time>
             
 
             
@@ -434,7 +437,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/知识沉淀/" itemprop="url" rel="index"><span itemprop="name">知识沉淀</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/计算机网络/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a></span>
 
                 
                 
@@ -448,7 +451,7 @@
 
           
           
-             <span id="/2019/01/10/h5移动端适配/" class="leancloud_visitors" data-flag-title="h5移动端适配">
+             <span id="/2019/01/11/正确理解TCP连接的三次握手，四次挥手/" class="leancloud_visitors" data-flag-title="正确理解TCP连接的三次握手，四次挥手">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -479,15 +482,42 @@
       
 
       
-        <p>本文记录了项目中可能遇到的h5兼容性及适配问题<br><a id="more"></a></p>
-<h1 id="移动端自适应-浏览器兼容"><a href="#移动端自适应-浏览器兼容" class="headerlink" title="移动端自适应+浏览器兼容"></a>移动端自适应+浏览器兼容</h1><h2 id="使用postcss-px2rem"><a href="#使用postcss-px2rem" class="headerlink" title="使用postcss-px2rem"></a>使用postcss-px2rem</h2><p>原理：</p>
-<ul>
-<li>浏览器兼容<br>posscss会将本地的css预处理文件进行打包加上各种浏览器的前缀以做到浏览器兼容</li>
-<li>px2rem<br>使用该插件后达到的效果是：按照视觉稿的像素值写css样式，且能做到不同设备的样式自适应。其原理是通过将你写的px转换为rem，并指定根元素的font-size与屏幕的比例与remUnit和视觉稿的比例相同，具体操作如下：<br>当视觉稿的宽度为750px时，<br>在webpack中的配置：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">postcss: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [px2rem(&#123;<span class="attr">remUnit</span>: <span class="number">75</span>&#125;)];  <span class="comment">// 视觉稿的1/10</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>关于TCP连接的建立与释放的文章可谓是比比皆是，然而当初看完之后却仍是一知半解，直到最近重新拜读了谢希仁老师的《计算机网络》后，才对所谓的三次握手，四次挥手有了较正确的理解。<br><a id="more"></a></p>
+<h1 id="抛砖引玉"><a href="#抛砖引玉" class="headerlink" title="抛砖引玉"></a>抛砖引玉</h1><p>长期以来有一个问题，<strong>为什么是三次握手？</strong><br>如果说三次握手是为了让服务端和客户端互相确认，那么这不是永远都无法确认对方收到的死循环吗？</p>
+<blockquote>
+<p>a给b发了一条消息，接着b给a发了一条回复，然而b又不知道a是否收到了，接着a又给b发了一条回复，那a怎么知道b收到了a的回复呢，这样不就陷入死循环了吗？</p>
+</blockquote>
+<h1 id="TCP连接建立–三次握手"><a href="#TCP连接建立–三次握手" class="headerlink" title="TCP连接建立–三次握手"></a>TCP连接建立–三次握手</h1><p>带着这个疑问我重新阅读了《计算机网络》一书中关于TCP连接建立的内容，下面是我的理解：<br><img src="https://img-blog.csdnimg.cn/20190111115055999.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzgyMzcy,size_16,color_FFFFFF,t_70" alt="三次握手"></p>
+<h2 id="上图表示三次握手的过程，先解释一下这几个字段的意思："><a href="#上图表示三次握手的过程，先解释一下这几个字段的意思：" class="headerlink" title="上图表示三次握手的过程，先解释一下这几个字段的意思："></a>上图表示三次握手的过程，先解释一下这几个字段的意思：</h2><ul>
+<li><strong>ACK</strong> 确认位</li>
+<li><strong>SYN</strong> 同步位</li>
+<li><strong>seq</strong> sequence number，即序列号，标示每一次请求报文</li>
+<li><strong>ack</strong> 确认号</li>
+</ul>
+<h2 id="建立过程"><a href="#建立过程" class="headerlink" title="建立过程"></a>建立过程</h2><ul>
+<li>刚开始Server和Client都处于关闭状态，由于Tcp连接的建立必然是由Client发起的，通常Server会一直打开，于是Server就由Closed状态进入到Listen状态</li>
+<li><strong>第一次握手</strong>：当Client想要开始建立连接时，Client向Server发送连接请求报文段(SYN=1,seq=x)Client由Closed状态进入到SYN-Send（同部位发送）状态</li>
+<li><strong>第二次握手</strong>：Server接收到上述报文段后，解析知道了SYN=1,seq=x,于是向Client发出确认报文段（SYN=1,seq=y,ACK=1,ack=x+1），<strong>以确认Client确实要进行此次连接</strong>，然后Server就由Listen状态进入到SYN-RCVD（同步收到状态）<br>这就对我最上面的问题作出了一定解释，原来Server的第二次握手并不只是为了告诉Client：“我可以接收消息了哦。”其实，这是为了确保从第一次握手得到的报文段确实是Client现在想要请求的，也就是告诉Client：“我收到一个seq为x的连接请求，快告诉我需不需要连接啊？”<br>因为当Client的第一次握手发送的请求报文由于网络或是其他原因在过程中受阻了，当Server接收到时已经超时。但是对Server来说，它并不能从接收到的SYN和seq判断出是超时请求，于是他仍然会发起第二次握手，与Client同步。此时第三次握手就显得非常重要了，因为Server只能通过第三次握手来判断是否确实要建立连接（万一是上述的超时连接呢！）</li>
+<li><strong>第三次握手</strong>：Client接收到确认报文段，根据ack知道了：“哦，这确实是我上次发送seq的回复啊（因为来自Server的ack=来自Client的seq+1），那么我就发送个消息告诉Server这次连接需要建立吧！”于是Client向Server发送了确认报文段（ACK=1,ack=y+1,seq=x+1），并进入了ESTABLISHED（已建立连接）状态。Server接收到确认报文后对比Client的ack=Server的seq+1就知道了：“这是对我之前你发送seq=y的回复，告诉我确实要建立连接啊，那么我就赶紧建立连接吧！”于是Server进入了ESTABLISHED（已建立连接）状态，至此就完成了三次握手并建立了TCP连接</li>
+</ul>
+<h1 id="TCP连接释放–四次挥手"><a href="#TCP连接释放–四次挥手" class="headerlink" title="TCP连接释放–四次挥手"></a>TCP连接释放–四次挥手</h1><p>我们用同样的方式来解读四次挥手：<br><img src="https://img-blog.csdnimg.cn/20190111115527638.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzgyMzcy,size_16,color_FFFFFF,t_70" alt="四次挥手"></p>
+<h2 id="同样解释几个字段的意思："><a href="#同样解释几个字段的意思：" class="headerlink" title="同样解释几个字段的意思："></a>同样解释几个字段的意思：</h2><ul>
+<li><strong>ACK</strong> 确认位</li>
+<li><strong>FIN</strong> 终止控制位</li>
+<li><strong>seq</strong> sequence number，即序列号，标示每一次请求报文</li>
+<li><strong>ack</strong> 确认号</li>
+</ul>
+<h2 id="释放过程"><a href="#释放过程" class="headerlink" title="释放过程"></a>释放过程</h2><ul>
+<li>接着上副图，此时Server和Client都处于ESTABLISHED（已建立连接）状态，区别于建立过，Server和Client都需要释放连接，于是便有了四次挥手</li>
+<li><strong>第一次挥手</strong>：Client发送释放报文段（FIN=1,seq=u），并停止由Client向Server发起数据请求，同时Client进入FIN-WAIT-1（终止等待1）状态</li>
+<li><strong>第二次挥手</strong>：Server接收到Client的释放报文后，根据seq进入CLOSE-WAIT状态，此时TCP连接就进入了<strong>半关闭</strong>状态（需要注意的是，此时Server仍然可以向Client发送数据），并通知高层进程（Socket）：“seq=u的连接可以关闭啦！”，同时向Client发送确认报文（ACK=1,ack=u+1,seq=v），Client接收到确认报文后，对比Server的ack=Client的seq+1，于是知道了由Server到Client的连接已关闭，并进入FIN-WAIT-2状态。</li>
+<li><strong>第三次挥手</strong>：当Server高层进程关闭后，开始向Client发送释放报文段（FIN=1,seq=w,ACK=1,ack=u+1），并进入LAST-ACK（最后确认）状态。</li>
+<li><strong>第四次挥手</strong>：当Client接收到释放报文后，根据Server的ack=Client的seq+1，知道了：“这是之前已经半关闭的TCP连接，现在Server请求释放连接了，那么我赶紧给Server发个消息，告诉它可以关闭连接了吧”，于是Client发送最后的确认报文（ACK=1,ack=w+1,seq=u+1）,并进入TIME-WAIT状态，等待2MSL后进入CLOSED状态。Server在收到确认报文后，对比Client的ack=Server的seq+1，知道了：“Client已经发来确认并关闭了，那我也赶紧关闭吧”，于是进入了CLOSED状态。<h3 id="关于Client等待2MSL后关闭的原因："><a href="#关于Client等待2MSL后关闭的原因：" class="headerlink" title="关于Client等待2MSL后关闭的原因："></a>关于Client等待2MSL后关闭的原因：</h3>MSL是指最长报文段寿命<ul>
+<li>1、为了保证客户端发送的最后一个ACK报文段能够到达服务器。因为这个ACK有可能丢失，从而导致处在LAST-ACK状态的服务器收不到对FIN-ACK的确认报文。服务器会超时重传这个FIN-ACK，接着客户端再重传一次确认，重新启动时间等待计时器。最后客户端和服务器都能正常的关闭。假设客户端不等待2MSL，而是在发送完ACK之后直接释放关闭，一但这个ACK丢失的话，服务器就无法正常的进入关闭连接状态。</li>
+<li>2、他还可以防止已失效的报文段。客户端在发送最后一个ACK之后，再经过经过2MSL，就可以使本链接持续时间内所产生的所有报文段都从网络中消失。从保证在关闭连接后不会有还在网络中滞留的报文段去骚扰服务器。</li>
+</ul>
 </li>
 </ul>
-<p>在index.html中指定：<br>font-size为document宽度的1/10<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;<span class="built_in">document</span>.getElementsByTagName(<span class="string">'html'</span>)[<span class="number">0</span>].style.fontSize = (<span class="built_in">document</span>.documentElement.clientWidth ||  <span class="built_in">document</span>.body.clientWidth) /<span class="number">10</span> + <span class="string">'px'</span>;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
-<h2 id="iPhoneX适配"><a href="#iPhoneX适配" class="headerlink" title="iPhoneX适配"></a>iPhoneX适配</h2><p>iPhoneX 的分辨率：2436 <em> 1125     ||     pt: 812 </em> 375    ||    dpr: 3<br>iPhoneXr的分辨率：1792 <em> 828     ||    pt:  896 </em> 414    ||    dpr: 3<br>iPhoneXs 的分辨率： 2436 <em> 1125   ||   pt: 812 </em> 375    ||    dpr: 3<br>iPhoneXs Max 的分辨率：2688 <em> 1242   ||    pt: 896 </em> 414    ||    dpr: 3<br>可以看到xs和x的分辨率和dpr是相同的，xr和xsMax的分辨率和dpr是相同的，因此，css可以这样适配：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">media</span> only screen and (device-width: <span class="number">375px</span>) and (device-height: <span class="number">812px</span>) and (-webkit-device-pixel-ratio: <span class="number">3</span>) &#123;</span><br><span class="line">	<span class="comment">/* 适配iPhoneX，iPhoneXs */</span></span><br><span class="line">&#125;</span><br><span class="line">@<span class="keyword">media</span> only screen and (device-width: <span class="number">414px</span>) and (device-height: <span class="number">896px</span>) and (-webkit-device-pixel-ratio: <span class="number">3</span>) &#123;</span><br><span class="line">	<span class="comment">/* 适配iPhoneXr，iPhoneXs Max */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -518,8 +548,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/09/Vue踩坑笔记/" rel="next" title="Vue踩坑笔记">
-                <i class="fa fa-chevron-left"></i> Vue踩坑笔记
+              <a href="/2019/01/10/全面理解单线程的JavaScript/" rel="next" title="全面理解单线程的JavaScript">
+                <i class="fa fa-chevron-left"></i> 全面理解单线程的JavaScript
               </a>
             
           </div>
@@ -527,10 +557,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/10/你可能会遇到的标签样式问题/" rel="prev" title="你可能会遇到的标签样式问题">
-                你可能会遇到的标签样式问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -677,7 +703,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#移动端自适应-浏览器兼容"><span class="nav-number">1.</span> <span class="nav-text">移动端自适应+浏览器兼容</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用postcss-px2rem"><span class="nav-number">1.1.</span> <span class="nav-text">使用postcss-px2rem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iPhoneX适配"><span class="nav-number">1.2.</span> <span class="nav-text">iPhoneX适配</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#抛砖引玉"><span class="nav-number">1.</span> <span class="nav-text">抛砖引玉</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP连接建立–三次握手"><span class="nav-number">2.</span> <span class="nav-text">TCP连接建立–三次握手</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#上图表示三次握手的过程，先解释一下这几个字段的意思："><span class="nav-number">2.1.</span> <span class="nav-text">上图表示三次握手的过程，先解释一下这几个字段的意思：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立过程"><span class="nav-number">2.2.</span> <span class="nav-text">建立过程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP连接释放–四次挥手"><span class="nav-number">3.</span> <span class="nav-text">TCP连接释放–四次挥手</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#同样解释几个字段的意思："><span class="nav-number">3.1.</span> <span class="nav-text">同样解释几个字段的意思：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#释放过程"><span class="nav-number">3.2.</span> <span class="nav-text">释放过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于Client等待2MSL后关闭的原因："><span class="nav-number">3.2.1.</span> <span class="nav-text">关于Client等待2MSL后关闭的原因：</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
