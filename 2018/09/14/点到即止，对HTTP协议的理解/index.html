@@ -113,7 +113,7 @@
 <meta property="og:description" content="HTTP协议是什么？http协议是超文本传输协议，用于在客户端与服务器间进行数据传输。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://user-images.githubusercontent.com/5757051/45104323-6e4a2900-b164-11e8-971f-f2cfd58bab29.png">
-<meta property="og:updated_time" content="2019-01-14T05:54:06.030Z">
+<meta property="og:updated_time" content="2019-01-14T05:57:25.530Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="点到即止，对HTTP协议的理解">
 <meta name="twitter:description" content="HTTP协议是什么？http协议是超文本传输协议，用于在客户端与服务器间进行数据传输。">
@@ -431,7 +431,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-14 13:54:06" itemprop="dateModified" datetime="2019-01-14T13:54:06+08:00">2019-01-14</time>
+                <time title="修改时间：2019-01-14 13:57:25" itemprop="dateModified" datetime="2019-01-14T13:57:25+08:00">2019-01-14</time>
               
             
           </span>
@@ -521,10 +521,16 @@
 <p><img src="https://user-images.githubusercontent.com/5757051/45104323-6e4a2900-b164-11e8-971f-f2cfd58bab29.png" alt="缓存策略"><br>1、判断header中的expires和catch-control是否命中强缓存（即是否过期），若命中，则加载强缓存，不与服务端建立连接；若未命中，则向服务端发送请求</p>
 <p>2、服务端<strong>先后</strong>检验header中的<code>if-none-match</code>和<code>if-modified-since</code>与服务端保存的<code>etag</code>和<code>last-modified</code>是否一致，若一致，则命中协商缓存，返回状态码304，告知客户端去读取协商缓存；若不一致，则返回状态码200和新数据</p>
 <h2 id="既生expire，何生catch-control"><a href="#既生expire，何生catch-control" class="headerlink" title="既生expire，何生catch-control?"></a>既生expire，何生catch-control?</h2><blockquote>
-<p>Expires是一个绝对时间，即服务器时间。浏览器检查当前时间，如果还没到失效时间就直接使用缓存文件。但是该方法存在一个问题：服务器时间与客户端时间可能不一致。因此该字段已经很少使用。<br>cache-control中的max-age保存一个相对时间。例如Cache-Control: max-age = 484200，表示浏览器收到文件后，缓存在484200s内均有效。如果同时存在cache-control和Expires，浏览器总是优先使用cache-control。</p>
+<p>Expires是一个绝对时间，即服务器时间。浏览器检查当前时间，如果还没到失效时间就直接使用缓存文件。但是该方法存在一个问题：服务器时间与客户端时间可能不一致。因此该字段已经很少使用。</p>
+</blockquote>
+<blockquote>
+<p>cache-control中的max-age保存一个相对时间。例如Cache-Control: max-age = 484200，表示浏览器收到文件后，缓存在484200s内均有效。如果同时存在cache-control和Expires，浏览器总是优先使用cache-control。</p>
 </blockquote>
 <h2 id="即生last-modified，何生etag"><a href="#即生last-modified，何生etag" class="headerlink" title="即生last-modified，何生etag?"></a>即生last-modified，何生etag?</h2><blockquote>
-<p>一些文件也许会周期性的更改，但是他的内容并不改变(仅仅改变的修改时间)，这个时候我们并不希望客户端认为这个文件被修改了，而重新GET<br>某些文件修改非常频繁，比如在秒以下的时间内进行修改，(比方说1s内修改了N次)，If-Modified-Since能检查到的粒度是s级的，这种修改无法判断(或者说UNIX记录MTIME只能精确到秒)；</p>
+<p>一些文件也许会周期性的更改，但是他的内容并不改变(仅仅改变的修改时间)，这个时候我们并不希望客户端认为这个文件被修改了，而重新GET</p>
+</blockquote>
+<blockquote>
+<p>某些文件修改非常频繁，比如在秒以下的时间内进行修改，(比方说1s内修改了N次)，If-Modified-Since能检查到的粒度是s级的，这种修改无法判断(或者说UNIX记录MTIME只能精确到秒)；</p>
 </blockquote>
 <h1 id="HTTP请求和响应的结构？"><a href="#HTTP请求和响应的结构？" class="headerlink" title="HTTP请求和响应的结构？"></a>HTTP请求和响应的结构？</h1><p>http请求：</p>
 <p>1、请求行：方法名（post)/url/协议及版本（http1.1)</p>
