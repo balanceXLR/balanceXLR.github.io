@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本文记录我从开源一个Vue组件出发，到模板以及脚手架开发，最终开源了一套脚手架工具的过程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="说说我的Vue组件开源之路">
+<meta property="og:url" content="http://yoursite.com/2019/01/23/我的开源之路/index.html">
+<meta property="og:site_name" content="戏铃人">
+<meta property="og:description" content="本文记录我从开源一个Vue组件出发，到模板以及脚手架开发，最终开源了一套脚手架工具的过程">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-24T09:00:09.166Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="说说我的Vue组件开源之路">
+<meta name="twitter:description" content="本文记录我从开源一个Vue组件出发，到模板以及脚手架开发，最终开源了一套脚手架工具的过程">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/23/我的开源之路/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>说说我的Vue组件开源之路 | 戏铃人</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/1465799166/1465799166.github.io" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+      </svg></a>
+    <style>
+      .github-corner:hover .octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+      }
+
+      @keyframes octocat-wave {
+
+        0%,
+        100% {
+          transform: rotate(0)
+        }
+
+        20%,
+        60% {
+          transform: rotate(-25deg)
+        }
+
+        40%,
+        80% {
+          transform: rotate(10deg)
+        }
+      }
+
+      @media (max-width:500px) {
+        .github-corner:hover .octo-arm {
+          animation: none
+        }
+
+        .github-corner .octo-arm {
+          animation: octocat-wave 560ms ease-in-out
+        }
+      }
+
+    </style>
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">戏铃人</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/user/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/23/我的开源之路/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Oliver Shen">
+      <meta itemprop="description" content="life is not easy, whatever, not tough">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="戏铃人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">说说我的Vue组件开源之路
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-23 14:32:30" itemprop="dateCreated datePublished" datetime="2019-01-23T14:32:30+08:00">2019-01-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-24 17:00:09" itemprop="dateModified" datetime="2019-01-24T17:00:09+08:00">2019-01-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/开源/" itemprop="url" rel="index"><span itemprop="name">开源</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/01/23/我的开源之路/" class="leancloud_visitors" data-flag-title="说说我的Vue组件开源之路">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文记录我从开源一个Vue组件出发，到模板以及脚手架开发，最终开源了一套脚手架工具的过程<br><a id="more"></a></p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>在流水式的前端开发的工作中，难免遇到需要依靠一些开源的库，但这些库有时又不能满足我的需求，差之毫厘谬以千里。于是我萌生了一个想法：为什么我不能开源一个项目、一个库、一个组件呢？</p>
+<h1 id="需要解决的问题"><a href="#需要解决的问题" class="headerlink" title="需要解决的问题"></a>需要解决的问题</h1><ul>
+<li>Vue组件开发<ul>
+<li>支持全局注册</li>
+<li>开发流程</li>
+</ul>
+</li>
+<li>npm<ul>
+<li>发布</li>
+<li>版本控制</li>
+<li>发布流程 </li>
+</ul>
+</li>
+<li>webpack 搭建<ul>
+<li>本地调试</li>
+<li>打包</li>
+<li>常用配置项的理解</li>
+<li>优化的配置项</li>
+</ul>
+</li>
+<li>组件开发模板<ul>
+<li>易懂的README</li>
+</ul>
+</li>
+<li>脚手架<ul>
+<li>易懂的README</li>
+<li>更简单的命令行</li>
+</ul>
+</li>
+</ul>
+<h1 id="探索之路"><a href="#探索之路" class="headerlink" title="探索之路"></a>探索之路</h1><p>出发点是需要一个Vue组件，那我们首先来看看如何开发一个Vue组件</p>
+<h2 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h2><p>阅读Vue官方文档，可以在<a href="https://cn.vuejs.org/v2/guide/plugins.html" target="_blank" rel="noopener">插件</a>处看到Vue组件的开发方式：</p>
+<blockquote>
+<p>Vue.js 的插件应该有一个公开方法 install。这个方法的第一个参数是 Vue 构造器，第二个参数是一个可选的选项对象：</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">MyPlugin.install = <span class="function"><span class="keyword">function</span> (<span class="params">Vue, options</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 1. 添加全局方法或属性</span></span><br><span class="line">  Vue.myGlobalMethod = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 逻辑...</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 2. 添加全局资源</span></span><br><span class="line">  Vue.directive(<span class="string">'my-directive'</span>, &#123;</span><br><span class="line">    bind (el, binding, vnode, oldVnode) &#123;</span><br><span class="line">      <span class="comment">// 逻辑...</span></span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 3. 注入组件</span></span><br><span class="line">  Vue.mixin(&#123;</span><br><span class="line">    created: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 逻辑...</span></span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 4. 添加实例方法</span></span><br><span class="line">  Vue.prototype.$myMethod = <span class="function"><span class="keyword">function</span> (<span class="params">methodOptions</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 逻辑...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通过全局方法 Vue.use() 使用插件。它需要在你调用 new Vue() 启动应用之前完成：</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用 `MyPlugin.install(Vue)`</span></span><br><span class="line">Vue.use(MyPlugin)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  <span class="comment">//... options</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="着手开发一个Vue组件"><a href="#着手开发一个Vue组件" class="headerlink" title="着手开发一个Vue组件"></a>着手开发一个Vue组件</h2><p>新建一个空文件夹作为组件项目空间，并初始化package.json</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir vue-hello</span><br><span class="line"><span class="built_in">cd</span> vue-hello</span><br><span class="line">npm init</span><br></pre></td></tr></table></figure>
+<p>按照提示输入相关信息（之后可修改）<br>接着构造以下目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">|——src // 组件源码</span><br><span class="line">|   |——common // 通用文件，如全局css，utils</span><br><span class="line">|   |——components // 组件路径，每个文件夹对应一个组件</span><br><span class="line">|   |   |——hello</span><br><span class="line">|   |   |   |——index.vue</span><br><span class="line">|   |   |   |--index.css 对应组件的样式代码</span><br><span class="line">|   |——index.js // 组件打包入口</span><br><span class="line">|——package.json</span><br><span class="line">|——webpack.config.js // 打包配置文件</span><br></pre></td></tr></table></figure></p>
+<p>在hello/index.vue中写入代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">        name: <span class="string">'hello'</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在src/index.js中写入代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Hello <span class="keyword">from</span> <span class="string">'./components/hello/index.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> install = <span class="function"><span class="keyword">function</span> (<span class="params">Vue</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (install.installed) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    Vue.component(Hello.name, Hello) <span class="comment">// 注册全局component</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 支持标签引入</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> &amp;&amp; <span class="built_in">window</span>.Vue) &#123;</span><br><span class="line">    install(<span class="built_in">window</span>.Vue)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    install,  <span class="comment">// 引入时Vue.use()方法执行这个install方法</span></span><br><span class="line">    Hello</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>由于vue-cli中有许多优化的配置项我们暂时不需要，在这里我们选择自己搭建一个webpack配置文件：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>); <span class="comment">// 路径处理模块</span></span><br><span class="line"><span class="keyword">const</span> &#123;</span><br><span class="line">    VueLoaderPlugin</span><br><span class="line">&#125; = <span class="built_in">require</span>(<span class="string">'vue-loader'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        index: path.join(__dirname, <span class="string">"/src/index.js"</span>) <span class="comment">// 入口</span></span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: path.join(__dirname, <span class="string">"/dist"</span>), <span class="comment">// 打包后的文件存放的地方</span></span><br><span class="line">        publicPath: <span class="string">'/dist/'</span>, <span class="comment">// 设置公共路径</span></span><br><span class="line">        filename: <span class="string">"bundle.js"</span>, <span class="comment">// 打包后输出文件的文件名</span></span><br><span class="line">        libraryTarget: <span class="string">'umd'</span> <span class="comment">// 将你的library暴露为所有的模块定义下都可运行的方式，它将可在 CommonJS, AMD 环境下运行</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [&#123;</span><br><span class="line">                test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">                use: <span class="string">'babel-loader'</span>, <span class="comment">// 解析js</span></span><br><span class="line">                exclude: <span class="regexp">/node_modules/</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                test: <span class="regexp">/\.(png|svg|jpg|gif)$/</span>,</span><br><span class="line">                use: [</span><br><span class="line">                    <span class="string">'file-loader'</span> <span class="comment">// 解析图片文件</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                test: <span class="regexp">/\.(woff|woff2|eot|ttf|otf)$/</span>,</span><br><span class="line">                use: [</span><br><span class="line">                    <span class="string">'file-loader'</span> <span class="comment">// 解析文字文件</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                test: <span class="regexp">/\.vue$/</span>,</span><br><span class="line">                loader: <span class="string">'vue-loader'</span> <span class="comment">// 解析vue</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">                use: [<span class="string">'vue-style-loader'</span>, <span class="string">'css-loader'</span>] <span class="comment">// 解析vue</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="keyword">new</span> VueLoaderPlugin() <span class="comment">// 解析.vue文件</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>关于webpack配置我将在后面详细描述，这里先关注需要用到的依赖，在package.json中写入依赖：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&quot;devDependencies&quot;: &#123;</span><br><span class="line">   &quot;babel-core&quot;: &quot;^6.26.3&quot;,</span><br><span class="line">   &quot;babel-loader&quot;: &quot;^7.1.5&quot;,</span><br><span class="line">   &quot;babel-preset-env&quot;: &quot;^1.7.0&quot;,</span><br><span class="line">   &quot;css-loader&quot;: &quot;^1.0.0&quot;,</span><br><span class="line">   &quot;file-loader&quot;: &quot;^2.0.0&quot;,</span><br><span class="line">   &quot;style-loader&quot;: &quot;^0.23.1&quot;,</span><br><span class="line">   &quot;url-loader&quot;: &quot;^1.1.2&quot;,</span><br><span class="line">   &quot;vue&quot;: &quot;^2.5.17&quot;,</span><br><span class="line">   &quot;vue-hot-reload-api&quot;: &quot;^2.2.4&quot;,</span><br><span class="line">   &quot;vue-html-loader&quot;: &quot;^1.2.4&quot;,</span><br><span class="line">   &quot;vue-loader&quot;: &quot;^15.4.2&quot;,</span><br><span class="line">   &quot;vue-router&quot;: &quot;^3.0.1&quot;,</span><br><span class="line">   &quot;vue-style-loader&quot;: &quot;^3.0.3&quot;,</span><br><span class="line">   &quot;vue-template-compiler&quot;: &quot;^2.5.9&quot;,</span><br><span class="line">   &quot;webpack&quot;: &quot;^4.23.1&quot;,</span><br><span class="line">   &quot;webpack-cli&quot;: &quot;^3.1.2&quot;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>安装依赖<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -D</span><br></pre></td></tr></table></figure></p>
+<p>最后在package.json中写入打包指令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;build&quot;: &quot;webpack --mode production&quot;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure></p>
+<p>然后执行<code>npm run build</code>即可在根目录下生成一个dist目录，里面的bundle.js就是我们的hello组件啦</p>
+<p>在发布npm包之前，我们可以本地测试一下这个组件，在src目录下新建dev.html：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../node_modules/vue/dist/vue.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../dist/bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">hello</span>&gt;</span><span class="tag">&lt;/<span class="name">hello</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">            el: <span class="string">'#app'</span></span></span><br><span class="line"><span class="undefined">        &#125;)</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>没有问题的话，在浏览器中就可以看到熟悉的hello world了！</p>
+<h2 id="发布npm包"><a href="#发布npm包" class="headerlink" title="发布npm包"></a>发布npm包</h2><p>发布npm包前我们需要修改package.json文件的部分内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;vue-hello&quot;,  // 包名称，默认和你文件夹同名，可改，但是需要去npm官网搜素这个名称是否已存在，因为包名不能重复</span><br><span class="line">  &quot;version&quot;: &quot;1.0.0&quot;,  // 项目默认版本号，可改，如果项目后期更新再发布，则需要修改版本号</span><br><span class="line">  &quot;description&quot;: &quot;&quot;,   // 项目描述，选填，可利于SEO </span><br><span class="line">  &quot;main&quot;: &quot;dist/bundle.js&quot;,  // 你的包的主要入口路径，就是别人安装了你的包后系统会去这个路径找你的代码</span><br><span class="line">  &quot;scripts&quot;: &#123;         </span><br><span class="line">    &quot;build&quot;: &quot;webpack --mode production&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;author&quot;: &quot;&quot;,        // 作者，选填</span><br><span class="line">  &quot;license&quot;: &quot;ISC&quot;     // 许可证，默认即可</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后执行<code>npm login</code>登录&amp;<code>npm publish</code>即可发布，如果发布失败可能是权限问题，macos用户可执行<code>sudo npm publish</code></p>
+<h2 id="完整的Vue组件开发模板"><a href="#完整的Vue组件开发模板" class="headerlink" title="完整的Vue组件开发模板"></a>完整的Vue组件开发模板</h2><p>为了方便组件开发者进行本地调试，我们需要完善webpack配置，并优化项目结构，达到以下目的：</p>
+<ul>
+<li>开发者只需使用该模板就能直接进行组件开发，无需关注其他配置</li>
+<li>提供模板依赖的脚手架，一个命令生成模板</li>
+<li>完整易读的README，快速上手</li>
+</ul>
+<p>那么赶紧开始吧！</p>
+<h2 id="修改目录结构"><a href="#修改目录结构" class="headerlink" title="修改目录结构"></a>修改目录结构</h2><p>首先修改项目名称为<code>vc-component</code>，意为vue通用（common）组件（component）开发模板（template）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">|——build // webpack配置文件目录</span><br><span class="line">|   |——build.js // node打包脚本入口</span><br><span class="line">|   |——webpack.base.conf.js // 通用的webpack配置</span><br><span class="line">|   |——webpack.dev.conf.js // 本地调试的webpack配置</span><br><span class="line">|   |——webpack.prod.conf.js // 打包时的webpack配置</span><br><span class="line">|——src // 组件源码</span><br><span class="line">|   |——common // 通用文件</span><br><span class="line">|   |   |——common.less  // 全局样式，选择使用less</span><br><span class="line">|   |——components // 组件路径，每个文件夹代表一个组件</span><br><span class="line">|   |   |——hello</span><br><span class="line">|   |   |   |——index.vue</span><br><span class="line">|   |   |   |——index.less</span><br><span class="line">|   |   |——dev.html // 本地html调试</span><br><span class="line">|   |   |——index.js // 组件打包入口</span><br><span class="line">|   |——App.vue // vue根元素</span><br><span class="line">|   |——index.js // devserver的入口文件</span><br><span class="line">|——.babelrc // babel配置文件</span><br><span class="line">|——.gitignore // git同步代码时忽略的部分</span><br><span class="line">|——.npmignore // npm同步代码时忽略的部分</span><br><span class="line">|——index.html // vue挂载的根元素</span><br><span class="line">|——package.json // 项目信息</span><br><span class="line">|——README.md // 使用说明</span><br></pre></td></tr></table></figure></p>
+<h2 id="build"><a href="#build" class="headerlink" title="build"></a>build</h2><ul>
+<li><p>webpack.base.conf.js<br>该文件主要配置了通用webpack，包括常用的loader解析，postcss，通用插件HtmlWebpackPlugin等。由于dev出入口和build出入欧不同，将分开配置。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">      <span class="string">'vue$'</span>: <span class="string">'vue/dist/vue.esm.js'</span>, <span class="comment">// vue ES module版本，使webpack可以找到vue文件</span></span><br><span class="line">      <span class="string">'@'</span>: path.resolve(__dirname, <span class="string">'../src'</span>), <span class="comment">// 解析@为src目录</span></span><br><span class="line">    &#125;,</span><br><span class="line">    extensions: [<span class="string">'*'</span>, <span class="string">'.js'</span>, <span class="string">'.json'</span>, <span class="string">'.vue'</span>] <span class="comment">// import可省略后缀</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [&#123;</span><br><span class="line">        test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">        use: <span class="string">'babel-loader'</span>, <span class="comment">// 解析js</span></span><br><span class="line">        exclude: <span class="regexp">/node_modules/</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(png|svg|jpg|gif)$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          <span class="string">'file-loader'</span> <span class="comment">// 解析图片文件</span></span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(woff|woff2|eot|ttf|otf)$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          <span class="string">'file-loader'</span> <span class="comment">// 解析文字文件</span></span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.vue$/</span>,</span><br><span class="line">        loader: <span class="string">'vue-loader'</span> <span class="comment">// 解析vue</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [<span class="string">'vue-style-loader'</span>, <span class="string">'css-loader'</span>, <span class="string">'postcss-loader'</span>] <span class="comment">// 解析css文件，postcss后处理器</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.less$/</span>,</span><br><span class="line">        use: [<span class="string">'vue-style-loader'</span>, <span class="string">'css-loader'</span>, <span class="string">'postcss-loader'</span>, <span class="string">'less-loader'</span>] <span class="comment">// 解析less文件</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> VueLoaderPlugin(),  <span class="comment">// 也是为了解析vue</span></span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123; <span class="comment">// 将打包产生的文件挂载到目标html上</span></span><br><span class="line">      template: path.resolve(__dirname, <span class="string">'../index.html'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>webpack.dev.conf.js<br>配置了dev环境下的webpack，dev下的入口为src/index.js，与传统vue-cli相同，启动了一个devserver，同时开启了模块热更新，优化了complier信息等。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> devWebpackConfig = merge(baseConfig, &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>,</span><br><span class="line">  devtool: <span class="string">'inline-source-map'</span>,</span><br><span class="line">  entry: &#123;</span><br><span class="line">    bundle: path.resolve(__dirname, <span class="string">'../src/index.js'</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'../dev-dist'</span>),</span><br><span class="line">    filename: <span class="string">'[name].[hash].js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [&#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [<span class="string">'vue-style-loader'</span>, <span class="string">'css-loader'</span>, <span class="string">'postcss-loader'</span>] <span class="comment">// 解析css文件，postcss后处理器，需要在根目录下新建postcss.config.js</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.less$/</span>,</span><br><span class="line">        use: [<span class="string">'vue-style-loader'</span>, <span class="string">'css-loader'</span>, <span class="string">'postcss-loader'</span>, <span class="string">'less-loader'</span>] <span class="comment">// 解析less文件</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> webpack.HotModuleReplacementPlugin(), <span class="comment">// 模块热更新</span></span><br><span class="line">    </span><br><span class="line">  ],</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    contentBase: path.resolve(__dirname, <span class="string">'../dev-dist'</span>),</span><br><span class="line">    open: <span class="literal">false</span>, <span class="comment">// 禁止自动开启浏览器</span></span><br><span class="line">    hot: <span class="literal">true</span>, <span class="comment">// 开启模块热更新</span></span><br><span class="line">    clientLogLevel: <span class="string">"none"</span>, <span class="comment">// 不在浏览器控制台打印</span></span><br><span class="line">    quiet: <span class="literal">true</span>, <span class="comment">// 配合FriendlyErrorsPlugin使用</span></span><br><span class="line">    host: <span class="string">'localhost'</span>,</span><br><span class="line">    port: <span class="number">8080</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  portfinder.basePort = process.env.PORT || <span class="number">8080</span></span><br><span class="line">  portfinder.getPort(<span class="function">(<span class="params">err, port</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(err) &#123;</span><br><span class="line">      reject(err)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      devWebpackConfig.devServer.port = port <span class="comment">// 端口自增</span></span><br><span class="line">      devWebpackConfig.plugins.push(<span class="keyword">new</span> FriendlyErrorsPlugin(&#123;  <span class="comment">// 优化compiler信息</span></span><br><span class="line">        compilationSuccessInfo: &#123;</span><br><span class="line">          messages: [<span class="string">`Your application is running here: http://<span class="subst">$&#123;devWebpackConfig.devServer.host&#125;</span>:<span class="subst">$&#123;port&#125;</span>`</span>],</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;))</span><br><span class="line">      resolve(devWebpackConfig)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>webpack.prod.conf.js<br>配置了build时的webpack</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>);</span><br><span class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> baseConfig = <span class="built_in">require</span>(<span class="string">'./webpack.base.conf'</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = merge(baseConfig, &#123;</span><br><span class="line">  mode: <span class="string">'production'</span>,</span><br><span class="line">  devtool: <span class="string">'source-map'</span>,</span><br><span class="line">  entry: &#123;</span><br><span class="line">    bundle: path.resolve(__dirname, <span class="string">'../src/components/index.js'</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'../dist'</span>),</span><br><span class="line">    filename: <span class="string">'bundle.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin([<span class="string">'dist/'</span>], &#123;</span><br><span class="line">      root: path.resolve(__dirname, <span class="string">'../'</span>),</span><br><span class="line">      verbose: <span class="literal">true</span>,</span><br><span class="line">      dry: <span class="literal">false</span></span><br><span class="line">    &#125;),</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>看一下此时的package.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;vc-component&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;a component template for vue&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;dist/bundle.js&quot;,</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;build&quot;: &quot;node build/build.js&quot;,</span><br><span class="line">    &quot;dev&quot;: &quot;webpack-dev-server --progress --config build/webpack.dev.conf.js&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;repository&quot;: &#123;</span><br><span class="line">    &quot;type&quot;: &quot;git&quot;,</span><br><span class="line">    &quot;url&quot;: &quot;git+https://github.com/1465799166/vc-component.git&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;keywords&quot;: [</span><br><span class="line">    &quot;vue&quot;,</span><br><span class="line">    &quot;component&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;author&quot;: &quot;shenjiaheng&quot;,</span><br><span class="line">  &quot;license&quot;: &quot;ISC&quot;,</span><br><span class="line">  &quot;bugs&quot;: &#123;</span><br><span class="line">    &quot;url&quot;: &quot;https://github.com/1465799166/vc-component/issues&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;homepage&quot;: &quot;https://github.com/1465799166/vc-component#readme&quot;,</span><br><span class="line">  &quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;babel-core&quot;: &quot;^6.26.3&quot;,</span><br><span class="line">    &quot;babel-loader&quot;: &quot;^7.1.5&quot;,</span><br><span class="line">    &quot;babel-preset-env&quot;: &quot;^1.7.0&quot;,</span><br><span class="line">    &quot;clean-webpack-plugin&quot;: &quot;^1.0.1&quot;,</span><br><span class="line">    &quot;css-loader&quot;: &quot;^1.0.0&quot;,</span><br><span class="line">    &quot;file-loader&quot;: &quot;^2.0.0&quot;,</span><br><span class="line">    &quot;friendly-errors-webpack-plugin&quot;: &quot;^1.7.0&quot;,</span><br><span class="line">    &quot;html-webpack-plugin&quot;: &quot;^3.2.0&quot;,</span><br><span class="line">    &quot;less&quot;: &quot;^3.9.0&quot;,</span><br><span class="line">    &quot;less-loader&quot;: &quot;^4.1.0&quot;,</span><br><span class="line">    &quot;mini-css-extract-plugin&quot;: &quot;^0.5.0&quot;,</span><br><span class="line">    &quot;portfinder&quot;: &quot;^1.0.20&quot;,</span><br><span class="line">    &quot;postcss-cssnext&quot;: &quot;^3.1.0&quot;,</span><br><span class="line">    &quot;postcss-loader&quot;: &quot;^3.0.0&quot;,</span><br><span class="line">    &quot;style-loader&quot;: &quot;^0.23.1&quot;,</span><br><span class="line">    &quot;url-loader&quot;: &quot;^1.1.2&quot;,</span><br><span class="line">    &quot;vue-hot-reload-api&quot;: &quot;^2.2.4&quot;,</span><br><span class="line">    &quot;vue-html-loader&quot;: &quot;^1.2.4&quot;,</span><br><span class="line">    &quot;vue-loader&quot;: &quot;^15.4.2&quot;,</span><br><span class="line">    &quot;vue-style-loader&quot;: &quot;^3.0.3&quot;,</span><br><span class="line">    &quot;vue-template-compiler&quot;: &quot;^2.5.9&quot;,</span><br><span class="line">    &quot;webpack&quot;: &quot;^4.23.1&quot;,</span><br><span class="line">    &quot;webpack-cli&quot;: &quot;^3.1.2&quot;,</span><br><span class="line">    &quot;webpack-dev-server&quot;: &quot;^3.1.14&quot;,</span><br><span class="line">    &quot;webpack-merge&quot;: &quot;^4.2.1&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;vue&quot;: &quot;^2.5.22&quot;,</span><br><span class="line">    &quot;vue-router&quot;: &quot;^3.0.2&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>至此webpack配置就完成了，但是这个配置仍有很多不足之处有待完善，接下来编写README就不多说了，大家自行操作。</p>
+<p>贴一下<a href="https://github.com/1465799166/vc-component" target="_blank" rel="noopener">项目地址</a>，欢迎star</p>
+<p>TODO: </p>
+<ul>
+<li>优化打包体积</li>
+<li>优化编译速度</li>
+<li>压缩js代码</li>
+<li>提取css文件</li>
+<li>优化build时命令行输出</li>
+</ul>
+<h2 id="脚手架"><a href="#脚手架" class="headerlink" title="脚手架"></a>脚手架</h2><p>该脚手架的目的是为了能够更方便的使用上述模板，今后的开发将不再关注脚手架代码，模板代码。</p>
+<h3 id="技术选择"><a href="#技术选择" class="headerlink" title="技术选择"></a>技术选择</h3><p>我选择了这几个库来搭建我的脚手架：</p>
+<ul>
+<li>commander 用于解析命令，并执行相关操作</li>
+<li>inquirer 优化命令行交互，用更多的选择操作来替代输入操作</li>
+<li>ora 提供命令操作后的loading</li>
+<li>chalk 美化命令行文字</li>
+</ul>
+<p>在<code>package.json</code>中加入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;chalk&quot;: &quot;^1.1.3&quot;,</span><br><span class="line">    &quot;commander&quot;: &quot;^2.9.0&quot;,</span><br><span class="line">    &quot;inquirer&quot;: &quot;^6.2.1&quot;,</span><br><span class="line">    &quot;ora&quot;: &quot;^3.0.0&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后执行<code>npm install</code></p>
+<h3 id="实现方案"><a href="#实现方案" class="headerlink" title="实现方案"></a>实现方案</h3><p>该脚手架需要实现基于模板的项目初始化，模板删除，模板添加，模板列表展示，具体实现如下：</p>
+<p>构造如下目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">|——bin</span><br><span class="line">|   |——vs // 命令入口</span><br><span class="line">|——command // 命令执行文件</span><br><span class="line">|   |——add.js</span><br><span class="line">|   |——delete.js</span><br><span class="line">|   |——init.js</span><br><span class="line">|   |——list.js</span><br><span class="line">|——.gitignore</span><br><span class="line">|——.npmignore</span><br><span class="line">|——package.json</span><br><span class="line">|——README.md</span><br><span class="line">|——templates.json // 模板存放</span><br></pre></td></tr></table></figure></p>
+<p>在bin/vs中实现4个命令：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span></span><br><span class="line"></span><br><span class="line">process.env.NODE_PATH = __dirname + <span class="string">'/../node_modules/'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> program = <span class="built_in">require</span>(<span class="string">'commander'</span>)</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">	.version(<span class="built_in">require</span>(<span class="string">'../package'</span>).version )</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">	.usage(<span class="string">'&lt;command&gt;'</span>)</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">	.command(<span class="string">'add'</span>)</span><br><span class="line">	.description(<span class="string">'Add a new template'</span>)</span><br><span class="line">  .alias(<span class="string">'a'</span>)</span><br><span class="line">  .action(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">require</span>(<span class="string">'../command/add'</span>)()</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">	.command(<span class="string">'list'</span>)</span><br><span class="line">	.description(<span class="string">'List all the templates'</span>)</span><br><span class="line">	.alias(<span class="string">'l'</span>)</span><br><span class="line">	.action(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="built_in">require</span>(<span class="string">'../command/list'</span>)()</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">	.command(<span class="string">'init'</span>)</span><br><span class="line">	.description(<span class="string">'Generate a new project'</span>)</span><br><span class="line">  .alias(<span class="string">'i'</span>)</span><br><span class="line">  .action(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">require</span>(<span class="string">'../command/init'</span>)()</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">program</span><br><span class="line">	.command(<span class="string">'delete'</span>)</span><br><span class="line">	.description(<span class="string">'Delete a template'</span>)</span><br><span class="line">	.alias(<span class="string">'d'</span>)</span><br><span class="line">	.action(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="built_in">require</span>(<span class="string">'../command/delete'</span>)()</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line">program.parse(process.argv)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!program.args.length)&#123;</span><br><span class="line">  program.help()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后在command下实现这4个命令相应的执行内容：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// add.js</span></span><br><span class="line"><span class="meta">'use strict'</span></span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(<span class="string">'../templates'</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="keyword">const</span> inquirer = <span class="built_in">require</span>(<span class="string">'inquirer'</span>)</span><br><span class="line"><span class="keyword">const</span> ora = <span class="built_in">require</span>(<span class="string">'ora'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  inquirer.prompt([&#123;</span><br><span class="line">      type: <span class="string">'input'</span>,</span><br><span class="line">      message: <span class="string">'模板名称: '</span>,</span><br><span class="line">      name: <span class="string">'name'</span>,</span><br><span class="line">      validate(val) &#123;</span><br><span class="line">        <span class="keyword">if</span> (config.tpl[val]) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="string">'模板名已存在！'</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      type: <span class="string">'input'</span>,</span><br><span class="line">      message: <span class="string">'模板Git仓库地址: '</span>,</span><br><span class="line">      name: <span class="string">'git'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      type: <span class="string">'input'</span>,</span><br><span class="line">      message: <span class="string">'模板分支: '</span>,</span><br><span class="line">      name: <span class="string">'branch'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      type: <span class="string">'input'</span>,</span><br><span class="line">      message: <span class="string">'描述(可省略): '</span>,</span><br><span class="line">      name: <span class="string">'description'</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]).then(<span class="function"><span class="params">tpl</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> spinner = ora(<span class="string">'模板添加中...'</span>).start()</span><br><span class="line">    config.tpl[tpl.name] = &#123;</span><br><span class="line">      tplName: tpl.name,</span><br><span class="line">      url: tpl.git.replace(<span class="regexp">/[\u0000-\u0019]/g</span>, <span class="string">''</span>), <span class="comment">// 过滤unicode字符</span></span><br><span class="line">      branch: tpl.branch,</span><br><span class="line">      description: tpl.description</span><br><span class="line">    &#125;</span><br><span class="line">    fs.writeFile(__dirname + <span class="string">'/../templates.json'</span>, <span class="built_in">JSON</span>.stringify(config), <span class="string">'utf-8'</span>, (err) =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (err) spinner.fail(<span class="string">'模板添加失败！'</span>)</span><br><span class="line">      spinner.succeed(<span class="string">'模板添加成功'</span>)</span><br><span class="line">      process.exit()</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// delete.js</span></span><br><span class="line"><span class="meta">'use strict'</span></span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(<span class="string">'../templates'</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="keyword">const</span> inquirer = <span class="built_in">require</span>(<span class="string">'inquirer'</span>)</span><br><span class="line"><span class="keyword">const</span> ora = <span class="built_in">require</span>(<span class="string">'ora'</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> tplList = []</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> config.tpl) &#123;</span><br><span class="line">      tplList.push(i)</span><br><span class="line">    &#125;</span><br><span class="line">    inquirer.prompt([</span><br><span class="line">        &#123;</span><br><span class="line">            type: <span class="string">'list'</span>,</span><br><span class="line">            name: <span class="string">'template'</span>,</span><br><span class="line">            message: <span class="string">'请选择要删除的模板'</span>,</span><br><span class="line">            choices: tplList</span><br><span class="line">        &#125;</span><br><span class="line">    ]).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> tplName = res.template</span><br><span class="line">        <span class="keyword">let</span> spinner = ora()</span><br><span class="line">        <span class="keyword">if</span> (config.tpl[tplName]) &#123;</span><br><span class="line">            config.tpl[tplName] = <span class="literal">undefined</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            spinner.fail(<span class="string">'模板不存在！'</span>)</span><br><span class="line">            process.exit()</span><br><span class="line">        &#125;</span><br><span class="line">        fs.writeFile(__dirname + <span class="string">'/../templates.json'</span>, <span class="built_in">JSON</span>.stringify(config),  <span class="string">'utf-8'</span>, (err) =&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(err)</span><br><span class="line">                spinner.fail(<span class="string">'删除失败'</span>)</span><br><span class="line">                process.exit()</span><br><span class="line">            &#125;</span><br><span class="line">            spinner.succeed(<span class="string">'删除成功'</span>)</span><br><span class="line">            process.exit()</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// init.js</span></span><br><span class="line"><span class="meta">'use strict'</span></span><br><span class="line"><span class="keyword">const</span> exec = <span class="built_in">require</span>(<span class="string">'child_process'</span>).exec</span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(<span class="string">'../templates'</span>)</span><br><span class="line"><span class="keyword">const</span> chalk = <span class="built_in">require</span>(<span class="string">'chalk'</span>)</span><br><span class="line"><span class="keyword">const</span> inquirer = <span class="built_in">require</span>(<span class="string">'inquirer'</span>)</span><br><span class="line"><span class="keyword">const</span> ora = <span class="built_in">require</span>(<span class="string">'ora'</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> tplList = []</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> config.tpl) &#123;</span><br><span class="line">      tplList.push(<span class="string">`<span class="subst">$&#123;i&#125;</span>——<span class="subst">$&#123;chalk.yellow(config.tpl[i].description)&#125;</span>`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    inquirer.prompt([&#123;</span><br><span class="line">      type: <span class="string">'list'</span>,</span><br><span class="line">      name: <span class="string">'templates'</span>,</span><br><span class="line">      message: <span class="string">'请选择初始化模板：'</span>,</span><br><span class="line">      choices: tplList</span><br><span class="line">    &#125;]).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> spinner = ora(<span class="string">'模板下载中...'</span>).start()</span><br><span class="line">      <span class="keyword">let</span> gitUrl = config.tpl[res.templates].url</span><br><span class="line">      <span class="keyword">let</span> branch = config.tpl[res.templates].branch</span><br><span class="line">      <span class="keyword">let</span> cmdStr = <span class="string">`git clone <span class="subst">$&#123;gitUrl&#125;</span> . &amp;&amp; git checkout <span class="subst">$&#123;branch&#125;</span>`</span></span><br><span class="line">      exec(cmdStr, (error, stdout, stderr) =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (error &amp;&amp; error.code == <span class="number">128</span>) &#123;</span><br><span class="line">          spinner.fail(<span class="string">'请在空目录中初始化！'</span>)</span><br><span class="line">          process.exit()</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (error) &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(stderr)</span><br><span class="line">          spinner.fail(<span class="string">'模板下载失败！'</span>)</span><br><span class="line">          process.exit()</span><br><span class="line">        &#125;</span><br><span class="line">        spinner.succeed(<span class="string">'模板下载成功！'</span>)</span><br><span class="line">        process.exit()</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// list.js</span></span><br><span class="line"><span class="meta">'use strict'</span></span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(<span class="string">'../templates'</span>)</span><br><span class="line"><span class="keyword">const</span> chalk = <span class="built_in">require</span>(<span class="string">'chalk'</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	 <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> config.tpl) &#123;</span><br><span class="line">		 <span class="built_in">console</span>.info(<span class="string">`<span class="subst">$&#123;chalk.green(i)&#125;</span>——<span class="subst">$&#123;chalk.yellow(config.tpl[i].description)&#125;</span>`</span>)</span><br><span class="line">	 &#125;</span><br><span class="line"> 	process.exit()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后初始化<code>templates.json</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;tpl&quot;: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后修改<code>package.json</code>中的<code>bin</code>属性，使得我们的vs文件作为脚手架的入口：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;bin&quot;: &#123;</span><br><span class="line">    &quot;vs&quot;: &quot;bin/vs&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<p>这样脚手架的代码就实现了，然后我们可以执行<code>npm link</code>（如果失败可能是没有权限，自行解决吧），即可把<code>vs</code>命令注册到全局了。</p>
+<h3 id="发布脚手架"><a href="#发布脚手架" class="headerlink" title="发布脚手架"></a>发布脚手架</h3><p>其实就是发布npm包了：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure></p>
+<p>使用的话需要全局安装，这样才有脚手架的样子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vs-sarffold -g</span><br></pre></td></tr></table></figure></p>
+<p>这里贴一下<a href="https://github.com/1465799166/vs-scaffold" target="_blank" rel="noopener">完整源码</a>，需要的可以看下</p>
+<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>起点只是为了开发一个vue组件，没想到这一路牵扯到了这么多知识点，可以说收获颇深了，所以说还是生命不息，学习不止啊。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/18/巧妙运用Chrome开发者工具进行性能分析/" rel="next" title="巧妙运用Chrome开发者工具进行性能分析">
+                <i class="fa fa-chevron-left"></i> 巧妙运用Chrome开发者工具进行性能分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div id="gitalk-container">
+    </div>
+    
+  
+
+
+
+        </div>
+        
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Oliver Shen">
+            
+              <p class="site-author-name" itemprop="name">Oliver Shen</p>
+              <p class="site-description motion-element" itemprop="description">life is not easy, whatever, not tough</p>
+          </div>
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/1465799166" title="GitHub &rarr; https://github.com/1465799166" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:a1465799166@163.com" title="E-Mail &rarr; mailto:a1465799166@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://blog.csdn.net/m0_37782372" title="CSDN &rarr; https://blog.csdn.net/m0_37782372" rel="noopener" target="_blank"><i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.weibo.com/u/5735027419" title="Weibo &rarr; https://www.weibo.com/u/5735027419" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#需要解决的问题"><span class="nav-number">2.</span> <span class="nav-text">需要解决的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#探索之路"><span class="nav-number">3.</span> <span class="nav-text">探索之路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#核心代码"><span class="nav-number">3.1.</span> <span class="nav-text">核心代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#着手开发一个Vue组件"><span class="nav-number">3.2.</span> <span class="nav-text">着手开发一个Vue组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布npm包"><span class="nav-number">3.3.</span> <span class="nav-text">发布npm包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完整的Vue组件开发模板"><span class="nav-number">3.4.</span> <span class="nav-text">完整的Vue组件开发模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改目录结构"><span class="nav-number">3.5.</span> <span class="nav-text">修改目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#build"><span class="nav-number">3.6.</span> <span class="nav-text">build</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脚手架"><span class="nav-number">3.7.</span> <span class="nav-text">脚手架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技术选择"><span class="nav-number">3.7.1.</span> <span class="nav-text">技术选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现方案"><span class="nav-number">3.7.2.</span> <span class="nav-text">实现方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布脚手架"><span class="nav-number">3.7.3.</span> <span class="nav-text">发布脚手架</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结束语"><span class="nav-number">4.</span> <span class="nav-text">结束语</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Oliver Shen</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+      
+    </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,0" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+
+  
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.css">
+
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+   <script>
+        var gitalk = new Gitalk({
+          clientID: 'cfadfe418a8546ca2791',
+          clientSecret: 'aee5c7b3ad3e597289c332fecbad8c206b897991',
+          repo: '1465799166.github.io',
+          owner: '1465799166',
+          admin: ['1465799166'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+       </script>
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
+                .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function () {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "UuzQ6dWpJSUyKRVBLvwSvK6T-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "UuzQ6dWpJSUyKRVBLvwSvK6T-gzGzoHsz",
+                'X-LC-Key': "tEE6e9xuaBSM3IhhYG0EDJqM",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+
+</body>
+
+</html>
