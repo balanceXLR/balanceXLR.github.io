@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="戏铃人">
 <meta property="og:description" content="js在ES6以前还没有class的概念，但却存在着面向对象的思想。在js中，可通过构造函数的形式来创建对象，并使用各种方式实现继承，其中原型链继承便是一种普遍的方法">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-18T09:26:46.290Z">
+<meta property="og:updated_time" content="2019-02-19T06:52:39.079Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出理解JS原型链继承">
 <meta name="twitter:description" content="js在ES6以前还没有class的概念，但却存在着面向对象的思想。在js中，可通过构造函数的形式来创建对象，并使用各种方式实现继承，其中原型链继承便是一种普遍的方法">
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-18 17:26:46" itemprop="dateModified" datetime="2019-02-18T17:26:46+08:00">2019-02-18</time>
+                <time title="修改时间：2019-02-19 14:52:39" itemprop="dateModified" datetime="2019-02-19T14:52:39+08:00">2019-02-19</time>
               
             
           </span>
@@ -481,7 +481,7 @@
 <p>js文件的最外层有一个默认的window对象，构造函数Test通过Test()的方式执行，则this指向调用它的对象，也就是window（Test()等价于window.Test()）。</p>
 <p>当使用var test = new Test()的方式创建对象时，this指向调用它的对象，也就是test这个实例。</p>
 <h1 id="prototype是什么，proto又是什么？"><a href="#prototype是什么，proto又是什么？" class="headerlink" title="prototype是什么，proto又是什么？"></a>prototype是什么，<strong>proto</strong>又是什么？</h1><p>prototype和<strong>proto</strong>都是指向原型对象的一个属性。</p>
-<p>prototype是构造函数的属性，指向构造函数的原型对象；<strong>proto</strong>是实例对象的属性，指向实例对象的原型对象。</p>
+<p>prototype是构造函数的属性，指向构造函数的原型对象；<strong>proto</strong>是实例对象的属性，指向实例对象的原型对象。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">'parent'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Parent()</span><br><span class="line">p.__proto__ === Parent.prototype</span><br></pre></td></tr></table></figure></p>
 <h1 id="这里又衍生一个问题，什么是原型对象？"><a href="#这里又衍生一个问题，什么是原型对象？" class="headerlink" title="这里又衍生一个问题，什么是原型对象？"></a>这里又衍生一个问题，什么是原型对象？</h1><p>原型对象是在构造函数创建同时创建的一个对象，它包含由它创建的所有实例的公共属性和方法。</p>
 <p>也就是说构造函数可以通过prototype获取这个原型对象，并使用它的属性和方法。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.type = <span class="string">'parent'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">'zs'</span>,</span><br><span class="line">	<span class="keyword">this</span>.age = <span class="number">13</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> parent = <span class="keyword">new</span> Parent()</span><br><span class="line"><span class="built_in">console</span>.log(parent.__proto__)</span><br><span class="line"><span class="built_in">console</span>.log(Parent.prototype)</span><br><span class="line"><span class="built_in">console</span>.log(Parent.prototype.constructor)</span><br><span class="line">Child.prototype = <span class="keyword">new</span> Parent()</span><br><span class="line"><span class="built_in">console</span>.log(Child.prototype)</span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> Child()</span><br><span class="line"><span class="built_in">console</span>.log(obj.__proto__)</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">in</span> obj) &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(i+<span class="string">':'</span>+obj[i])</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.keys(obj).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item,index</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(item + <span class="string">':'</span> + obj[item])</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyNames(obj).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item, index</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(item+ <span class="string">':'</span> + obj[item])</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 <p>上面的Parent和Child是构造函数，在创建构造函数的同时创建了原型对象。</p>
@@ -491,6 +491,7 @@
 <p>使用 for…in遍历对象的属性，输出obj原型链上的所有属性</p>
 <p>Object.keys()和Object.getOwnPropertyNames()不会输出对象继承来的属性</p>
 <p>也可以使用obj.hasOwnProperty()判断对象是否具有某个非继承属性</p>
+<h1 id="放一张图，加深理解"><a href="#放一张图，加深理解" class="headerlink" title="放一张图，加深理解"></a>放一张图，加深理解</h1><p><a href="http://thyrsi.com/t6/672/1550559144x2890208847.png" target="_blank" rel="noopener"></a></p>
 
       
     </div>
@@ -680,7 +681,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是原型链继承"><span class="nav-number">1.</span> <span class="nav-text">什么是原型链继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么说this在new时指向当前执行他的对象？"><span class="nav-number">2.</span> <span class="nav-text">为什么说this在new时指向当前执行他的对象？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#prototype是什么，proto又是什么？"><span class="nav-number">3.</span> <span class="nav-text">prototype是什么，proto又是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#这里又衍生一个问题，什么是原型对象？"><span class="nav-number">4.</span> <span class="nav-text">这里又衍生一个问题，什么是原型对象？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是原型链继承"><span class="nav-number">1.</span> <span class="nav-text">什么是原型链继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么说this在new时指向当前执行他的对象？"><span class="nav-number">2.</span> <span class="nav-text">为什么说this在new时指向当前执行他的对象？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#prototype是什么，proto又是什么？"><span class="nav-number">3.</span> <span class="nav-text">prototype是什么，proto又是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#这里又衍生一个问题，什么是原型对象？"><span class="nav-number">4.</span> <span class="nav-text">这里又衍生一个问题，什么是原型对象？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#放一张图，加深理解"><span class="nav-number">5.</span> <span class="nav-text">放一张图，加深理解</span></a></li></ol></div>
             
 
           </div>
