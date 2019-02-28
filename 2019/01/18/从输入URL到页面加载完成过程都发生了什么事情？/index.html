@@ -105,17 +105,17 @@
 
 
 
-  <meta name="description" content="这是一道十分常见的问题，也是做前端性能优化必备的知识基础">
+  <meta name="description" content="这是一道十分常见的问题，也是做前端性能优化必备的知识基础.本文将结合网上文章，个人理解，前端开发者所需注意点进行编写">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从输入URL到页面加载完成过程都发生了什么事情？">
 <meta property="og:url" content="http://yoursite.com/2019/01/18/从输入URL到页面加载完成过程都发生了什么事情？/index.html">
 <meta property="og:site_name" content="戏铃人">
-<meta property="og:description" content="这是一道十分常见的问题，也是做前端性能优化必备的知识基础">
+<meta property="og:description" content="这是一道十分常见的问题，也是做前端性能优化必备的知识基础.本文将结合网上文章，个人理解，前端开发者所需注意点进行编写">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-18T05:53:12.005Z">
+<meta property="og:updated_time" content="2019-02-28T09:58:28.601Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从输入URL到页面加载完成过程都发生了什么事情？">
-<meta name="twitter:description" content="这是一道十分常见的问题，也是做前端性能优化必备的知识基础">
+<meta name="twitter:description" content="这是一道十分常见的问题，也是做前端性能优化必备的知识基础.本文将结合网上文章，个人理解，前端开发者所需注意点进行编写">
 
 
 
@@ -412,12 +412,24 @@
                 
               
 
-              <time title="创建时间：2019-01-18 11:00:36 / 修改时间：13:53:12" itemprop="dateCreated datePublished" datetime="2019-01-18T11:00:36+08:00">2019-01-18</time>
+              <time title="创建时间：2019-01-18 11:00:36" itemprop="dateCreated datePublished" datetime="2019-01-18T11:00:36+08:00">2019-01-18</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 17:58:28" itemprop="dateModified" datetime="2019-02-28T17:58:28+08:00">2019-02-28</time>
               
             
           </span>
@@ -479,31 +491,52 @@
       
 
       
-        <p>这是一道十分常见的问题，也是做前端性能优化必备的知识基础<br><a id="more"></a></p>
+        <p>这是一道十分常见的问题，也是做前端性能优化必备的知识基础.<br>本文将结合网上文章，个人理解，前端开发者所需注意点进行编写<br><a id="more"></a></p>
 <p>整个过程其实是重复的请求资源的过程（Resource Timing）</p>
-<h2 id="解析URL"><a href="#解析URL" class="headerlink" title="解析URL"></a>解析URL</h2><ul>
-<li>URL组成</li>
+<h2 id="解析URL"><a href="#解析URL" class="headerlink" title="解析URL"></a>解析URL</h2><h3 id="URL组成"><a href="#URL组成" class="headerlink" title="URL组成"></a>URL组成</h3><p><a href="https://www.bilibili.com:80/home/movie.html?sort=1&amp;name=2#top" target="_blank" rel="noopener">https://www.bilibili.com:80/home/movie.html?sort=1&amp;name=2#top</a><br><strong>协议</strong>：https://<br><strong>域名</strong>：<a href="http://www.bilibili.com" target="_blank" rel="noopener">www.bilibili.com</a><br><strong>端口号</strong>：80，默认端口为80，注意80和8080不是同一个端口<br><strong>资源路径</strong>： home/movie.html，获取该域名下home/movie.html目录下的资源，注意这里的.html后缀只是一个路劲，并没有其他含义<br><strong>参数</strong>：?sort=1&amp;name=2<br><strong>锚点</strong>：#top， 可以通过#定位到返回的网页的指定位置</p>
+<p><strong>思考</strong> URI,URL,URN的关系是？（详见评论）</p>
+<h2 id="DNS查询"><a href="#DNS查询" class="headerlink" title="DNS查询"></a>DNS查询</h2><h3 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h3><ul>
+<li><strong>IP</strong><br>IP 协议为互联网上的每一个网络和每一台主机分配的一个逻辑地址。<br>IP地址是确认一台主机位置的唯一标识，由四个数字组成，如：127.0.0.1，要想访问一台主机，必须知道其IP地址。</li>
+<li><strong>域名</strong><br>  由于IP地址难以记忆，使用熟悉的字母数字组合来代替IP地址，这就是域名，如：<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></li>
+<li><strong>DNS</strong><br>  DNS是域名系统，它建立了域名与IP地址的映射表，达到通过访问域名来访问相应的IP地址的功能。<br>  <br><br>  <strong>思考</strong>：通常一个域名会映射一个或多个IP地址，这是为什么呢？（详见评论）</li>
 </ul>
-<h2 id="DNS查询"><a href="#DNS查询" class="headerlink" title="DNS查询"></a>DNS查询</h2><ul>
-<li>查询过程</li>
-<li>DNS缓存</li>
-<li>DNS优化</li>
-</ul>
-<h2 id="建立TCP连接"><a href="#建立TCP连接" class="headerlink" title="建立TCP连接"></a>建立TCP连接</h2><ul>
-<li>建立过程</li>
-<li>SSL</li>
-</ul>
-<h2 id="发送HTTP请求"><a href="#发送HTTP请求" class="headerlink" title="发送HTTP请求"></a>发送HTTP请求</h2><ul>
+<h3 id="查询（解析，缓存）过程"><a href="#查询（解析，缓存）过程" class="headerlink" title="查询（解析，缓存）过程"></a>查询（解析，缓存）过程</h3><p>本质就是逐级向上查询的过程，如：<br>浏览器 =&gt; 主机 =&gt; 本地域名服务器 =&gt; 根域名服务器 =&gt; （com,net,cn…）顶级域名服务器 =&gt;<br>baidu.com服务器域名服务器 </p>
+<ol>
+<li>浏览器搜索自己的DNS缓存，也就是从浏览器的映射表中查找，找到则建立连接，反之则进入下一步</li>
+<li>操作系统搜索自己的DNS缓存，也就是从操作系统的映射表中查找，找到则建立连接，反之则进入下一步</li>
+<li>操作系统搜索本地host文件，查找其中的映射，找到则建立连接，反之则进入下一步</li>
+<li>操作系统将域名发送到本地域名服务器（LDNS），通常是局域网主机，或者是当地（电信，移动，联通）主机。LDNS搜索自己的DNS缓存，找到则返回给你的主机，反之则进入下一步。通常在这一步就能查找到目标ip了。<ol>
+<li>LDNS请求根域名服务器，得到.com(.net,.cn…)顶级域名服务器地址</li>
+<li>LDNS请求.com(.net,.cn…)顶级域名服务器地址，得到baidu.com域名服务器地址</li>
+<li>LDNS请求baidu.com域名服务器，得到<a href="http://www.baidu.com域名的地址" target="_blank" rel="noopener">www.baidu.com域名的地址</a></li>
+</ol>
+</li>
+<li>LDNS将ip地址返回给主机，同时自己缓存该地址</li>
+<li>主机操作系统返回该地址给浏览器，自己缓存该地址</li>
+<li>浏览器得到该地址并缓存，准备建立连接</li>
+</ol>
+<p><strong>备注</strong> 该过程说到底是得到目标地址的过程，尚未建立连接，也就不会去获取目标资源了</p>
+<h2 id="DNS优化"><a href="#DNS优化" class="headerlink" title="DNS优化"></a>DNS优化</h2><p>主要通过两个方面</p>
+<h3 id="DNS缓存"><a href="#DNS缓存" class="headerlink" title="DNS缓存"></a>DNS缓存</h3><p>可结合<strong>查询（解析，缓存）过程</strong>理解</p>
+<h3 id="DNS负载均衡"><a href="#DNS负载均衡" class="headerlink" title="DNS负载均衡"></a>DNS负载均衡</h3><p>在DNS查询过程中，第<code>4</code>步及<code>4.1</code>，<code>4.2</code>，<code>4.3</code>均是由大量主机请求的过程，这种情况下，查询过程中出现的排队现象就会增加了查询的时间，因此，负载均衡应运而生。域名服务器（DNS）通过将资源分布存储在多个服务器上，当用户访问该域名时，DNS选择合适的ip地址返回给用户，从而降低了服务器的压力，提升访问了速度</p>
+<h2 id="建立TCP连接"><a href="#建立TCP连接" class="headerlink" title="建立TCP连接"></a>建立TCP连接</h2><p>在DNS查询过程中，得到了目标域名的IP地址，现在就可以开始建立TCP连接了。</p>
+<h3 id="建立过程"><a href="#建立过程" class="headerlink" title="建立过程"></a>建立过程</h3><p>  详见<a href="https://1465799166.github.io/2019/01/11/%E6%AD%A3%E7%A1%AE%E7%90%86%E8%A7%A3TCP%E8%BF%9E%E6%8E%A5%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" target="_blank" rel="noopener">正确理解TCP连接的三次握手，四次挥手</a></p>
+<h2 id="建立ssl连接"><a href="#建立ssl连接" class="headerlink" title="建立ssl连接"></a>建立ssl连接</h2><p>详见<a href="https://1465799166.github.io/2018/09/14/%E7%82%B9%E5%88%B0%E5%8D%B3%E6%AD%A2%EF%BC%8C%E5%AF%B9HTTP%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%90%86%E8%A7%A3/#more" target="_blank" rel="noopener">点到即止，对HTTP协议的理解</a> 中<code>https</code>部分</p>
+<h2 id="发送HTTP请求"><a href="#发送HTTP请求" class="headerlink" title="发送HTTP请求"></a>发送HTTP请求</h2><h3 id="HTTP详解"><a href="#HTTP详解" class="headerlink" title="HTTP详解"></a>HTTP详解</h3><p>详见<a href="https://1465799166.github.io/2018/09/14/%E7%82%B9%E5%88%B0%E5%8D%B3%E6%AD%A2%EF%BC%8C%E5%AF%B9HTTP%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%90%86%E8%A7%A3/#more" target="_blank" rel="noopener">点到即止，对HTTP协议的理解</a> </p>
+<h3 id="TCP连接与HTTP连接数量上的关系"><a href="#TCP连接与HTTP连接数量上的关系" class="headerlink" title="TCP连接与HTTP连接数量上的关系"></a>TCP连接与HTTP连接数量上的关系</h3><p>  此处纯属个人脑洞：</p>
+<ol>
+<li>浏览器访问目标url，在解析url中域名后，建立一次tcp连接，开始进行首次http请求，获取目标url中的资源路径下的资源，获取到资源后断开http连接，释放tcp连接</li>
+<li>获取到的资源可能会存在访问其他资源的情况，那么浏览器会对这些资源的域名进行归类，同一个域名下的资源请求在同一个tcp连接下进行。</li>
+<li>反复循环上述过程，直至加载所有资源。<ul>
 <li>请求过程</li>
 <li>请求报文组成</li>
 <li>缓存</li>
 </ul>
-<h2 id="页面渲染"><a href="#页面渲染" class="headerlink" title="页面渲染"></a>页面渲染</h2><ul>
-<li>渲染过程</li>
-<li>根据index.html继续进行其他资源的获取，重复上述过程</li>
-</ul>
-<h2 id="释放TCP连接"><a href="#释放TCP连接" class="headerlink" title="释放TCP连接"></a>释放TCP连接</h2><ul>
-<li>释放过程</li>
+</li>
+</ol>
+<h2 id="页面渲染"><a href="#页面渲染" class="headerlink" title="页面渲染"></a>页面渲染</h2><p>页面渲染夹杂在资源请求的过程中进行</p>
+<ul>
+<li>渲染过程 TODO</li>
 </ul>
 
       
@@ -694,7 +727,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解析URL"><span class="nav-number">1.</span> <span class="nav-text">解析URL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS查询"><span class="nav-number">2.</span> <span class="nav-text">DNS查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立TCP连接"><span class="nav-number">3.</span> <span class="nav-text">建立TCP连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发送HTTP请求"><span class="nav-number">4.</span> <span class="nav-text">发送HTTP请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面渲染"><span class="nav-number">5.</span> <span class="nav-text">页面渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#释放TCP连接"><span class="nav-number">6.</span> <span class="nav-text">释放TCP连接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解析URL"><span class="nav-number">1.</span> <span class="nav-text">解析URL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#URL组成"><span class="nav-number">1.1.</span> <span class="nav-text">URL组成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS查询"><span class="nav-number">2.</span> <span class="nav-text">DNS查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#名词解释"><span class="nav-number">2.1.</span> <span class="nav-text">名词解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询（解析，缓存）过程"><span class="nav-number">2.2.</span> <span class="nav-text">查询（解析，缓存）过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS优化"><span class="nav-number">3.</span> <span class="nav-text">DNS优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS缓存"><span class="nav-number">3.1.</span> <span class="nav-text">DNS缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS负载均衡"><span class="nav-number">3.2.</span> <span class="nav-text">DNS负载均衡</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立TCP连接"><span class="nav-number">4.</span> <span class="nav-text">建立TCP连接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建立过程"><span class="nav-number">4.1.</span> <span class="nav-text">建立过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立ssl连接"><span class="nav-number">5.</span> <span class="nav-text">建立ssl连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发送HTTP请求"><span class="nav-number">6.</span> <span class="nav-text">发送HTTP请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP详解"><span class="nav-number">6.1.</span> <span class="nav-text">HTTP详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP连接与HTTP连接数量上的关系"><span class="nav-number">6.2.</span> <span class="nav-text">TCP连接与HTTP连接数量上的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面渲染"><span class="nav-number">7.</span> <span class="nav-text">页面渲染</span></a></li></ol></div>
             
 
           </div>
