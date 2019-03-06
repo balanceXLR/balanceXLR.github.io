@@ -113,7 +113,7 @@
 <meta property="og:description" content="虽然对js中的一些常见原理问题有所耳闻，但却一直没有整理沉淀下来，本文记录了我对’JavaScript单线程异步’的理解。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/704770-274c37d32c2791cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp">
-<meta property="og:updated_time" content="2019-01-18T02:12:31.899Z">
+<meta property="og:updated_time" content="2019-03-06T03:04:57.317Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="全面理解单线程的JavaScript">
 <meta name="twitter:description" content="虽然对js中的一些常见原理问题有所耳闻，但却一直没有整理沉淀下来，本文记录了我对’JavaScript单线程异步’的理解。">
@@ -431,7 +431,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-18 10:12:31" itemprop="dateModified" datetime="2019-01-18T10:12:31+08:00">2019-01-18</time>
+                <time title="修改时间：2019-03-06 11:04:57" itemprop="dateModified" datetime="2019-03-06T11:04:57+08:00">2019-03-06</time>
               
             
           </span>
@@ -497,7 +497,7 @@
 <h1 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h1><blockquote>
 <p>进程和线程都是操作系统的概念。进程是应用程序的执行实例，每一个进程都是由私有的虚拟地址空间、代码、数据和其它系统资源所组成；进程在运行过程中能够申请创建和使用系统资源（如独立的内存区域等），这些资源也会随着进程的终止而被销毁。而线程则是进程内的一个独立执行单元，在不同的线程之间是可以共享进程资源的，所以在多线程的情况下，需要特别注意对临界资源的访问控制。在系统创建进程之后就开始启动执行进程的主线程，而进程的生命周期和这个主线程的生命周期一致，主线程的退出也就意味着进程的终止和销毁。主线程是由系统进程所创建的，同时用户也可以自主创建其它线程，这一系列的线程都会并发地运行于同一个进程中。</p>
 </blockquote>
-<p>也就是说，通常一个进程代表一个应用程序，而一个进程可以拥有多个线程，其生命周期与主线程同步</p>
+<p>也就是说，通常一个进程代表一个应用程序，而一个进程可以拥有多个线程，其生命周期与主线程同步<br><strong>注意异步，多线程，并行三者的区别</strong><br>异步 是指非阻塞的设计模式，目的是更合理的运用cpu资源<br>多线程 是指通过并发操作实现异步模式<br>并行 是指真正意义上的同步执行，通过让多个核的cpu同时执行操作来实现</p>
 <h1 id="JavaScript为何选用单线程"><a href="#JavaScript为何选用单线程" class="headerlink" title="JavaScript为何选用单线程"></a>JavaScript为何选用单线程</h1><p>其实这与它的用途有关。作为浏览器脚本语言，JavaScript 的主要用途是与用户互动，以及操作 DOM。若以多线程的方式操作这些 DOM，则可能出现操作的冲突。假设有两个线程同时操作一个 DOM 元素，线程 1 要求浏览器删除 DOM，而线程 2 却要求修改 DOM 样式，这时浏览器就无法决定采用哪个线程的操作。当然，我们可以为浏览器引入“锁”的机制来解决这些冲突，但这会大大提高复杂性，所以 JavaScript 从诞生开始就选择了单线程执行。</p>
 <h1 id="Runtime"><a href="#Runtime" class="headerlink" title="Runtime"></a>Runtime</h1><p>JavaScript Runtime包括图中的所有内容：</p>
 <ul>
@@ -511,7 +511,7 @@
 </ul>
 <h2 id="Call-Stack"><a href="#Call-Stack" class="headerlink" title="Call Stack"></a>Call Stack</h2><p>执行栈是真正执行js的地方，存放着正在执行的任务，每个任务被称为帧（stack of frames）。<br>它遵循着后进先出的原则，保证了事件逻辑的正确性：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getInt</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> val</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPercent</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getInt(val)</span><br><span class="line">&#125;</span><br><span class="line">getPercent(val)</span><br></pre></td></tr></table></figure></p>
 <p><code>getPercent(val)</code>在执行时，在Call Stack中创建了第一帧，然后在执行到<code>getInt(val)</code>时创建了第二帧，此时第二帧会先于第一帧执行，当第二帧执行完毕出栈后，继续执行第一帧</p>
-<h2 id="Event-loop"><a href="#Event-loop" class="headerlink" title="Event loop"></a>Event loop</h2><p>大名鼎鼎的事件循环，它依赖于任务队列（queue）</p>
+<h2 id="Event-loop"><a href="#Event-loop" class="headerlink" title="Event loop"></a>Event loop</h2><p>大名鼎鼎的事件循环，它依赖于<strong>任务队列</strong>（queue）</p>
 <h3 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h3><p>所有的待执行任务会进入这个队列，并按照先进先出的原则供Call Stack执行。<br>同步事件会优先进入队列，异步事件会在执行完成后通过callback（回调函数）的形式进入队列。（详情参考JS异步编程）<br>由于Call Stack存放的是正在执行的任务，只有当Call Stack为空时，会去除任务队列的第一个任务放入并执行。</p>
 <h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><p>有了上面的知识基础，现在来看事件循环就非常清晰了。它是任务不断进入任务队列，并在Call Stack为空时向其压入一个任务的一个循环过程。<br>得益于异步思想，事件循环通常在执行完所有任务之前是永不阻塞的，不过也有例外，如debugger，alert等。</p>
 <h1 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h1><p>为什么要在这边讲浏览器呢？这要从一个基础的问题说起了：<br>JavaScript的宿主环境是什么？<br>就像java运行在java环境或是JVM中，JavaScript的宿主环境也就是运行环境就是我们最熟悉又<strong>最陌生的浏览器</strong>了。</p>
