@@ -112,13 +112,13 @@
 <meta property="og:site_name" content="戏铃人">
 <meta property="og:description" content="关于TCP连接的建立与释放的文章可谓是比比皆是，然而当初看完之后却仍是一知半解，直到最近重新拜读了谢希仁老师的《计算机网络》后，才对所谓的三次握手，四次挥手有了较正确的理解。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://thyrsi.com/t6/674/1551340802x2728309621.jpg">
-<meta property="og:image" content="http://thyrsi.com/t6/674/1551340909x2728309621.png">
-<meta property="og:updated_time" content="2019-02-28T08:02:10.767Z">
+<meta property="og:image" content="https://i.screenshot.net/dk3wof7">
+<meta property="og:image" content="https://i.screenshot.net/5xe72hj">
+<meta property="og:updated_time" content="2019-03-08T09:06:46.736Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正确理解TCP连接的三次握手，四次挥手">
 <meta name="twitter:description" content="关于TCP连接的建立与释放的文章可谓是比比皆是，然而当初看完之后却仍是一知半解，直到最近重新拜读了谢希仁老师的《计算机网络》后，才对所谓的三次握手，四次挥手有了较正确的理解。">
-<meta name="twitter:image" content="http://thyrsi.com/t6/674/1551340802x2728309621.jpg">
+<meta name="twitter:image" content="https://i.screenshot.net/dk3wof7">
 
 
 
@@ -432,7 +432,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:02:10" itemprop="dateModified" datetime="2019-02-28T16:02:10+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-08 17:06:46" itemprop="dateModified" datetime="2019-03-08T17:06:46+08:00">2019-03-08</time>
               
             
           </span>
@@ -499,7 +499,7 @@
 <blockquote>
 <p>a给b发了一条消息，接着b给a发了一条回复，然而b又不知道a是否收到了，接着a又给b发了一条回复，那a怎么知道b收到了a的回复呢，这样不就陷入死循环了吗？</p>
 </blockquote>
-<h1 id="TCP连接建立–三次握手"><a href="#TCP连接建立–三次握手" class="headerlink" title="TCP连接建立–三次握手"></a>TCP连接建立–三次握手</h1><p>带着这个疑问我重新阅读了《计算机网络》一书中关于TCP连接建立的内容，下面是我的理解：<br><img src="http://thyrsi.com/t6/674/1551340802x2728309621.jpg" alt="三次握手"></p>
+<h1 id="TCP连接建立–三次握手"><a href="#TCP连接建立–三次握手" class="headerlink" title="TCP连接建立–三次握手"></a>TCP连接建立–三次握手</h1><p>带着这个疑问我重新阅读了《计算机网络》一书中关于TCP连接建立的内容，下面是我的理解：<br><img src="https://i.screenshot.net/dk3wof7" alt="三次握手"></p>
 <h2 id="上图表示三次握手的过程，先解释一下这几个字段的意思："><a href="#上图表示三次握手的过程，先解释一下这几个字段的意思：" class="headerlink" title="上图表示三次握手的过程，先解释一下这几个字段的意思："></a>上图表示三次握手的过程，先解释一下这几个字段的意思：</h2><ul>
 <li><strong>ACK</strong> 确认位</li>
 <li><strong>SYN</strong> 同步位</li>
@@ -512,7 +512,7 @@
 <li><strong>第二次握手</strong>：Server接收到上述报文段后，解析知道了SYN=1,seq=x,于是向Client发出确认报文段（SYN=1,seq=y,ACK=1,ack=x+1），<strong>以确认Client确实要进行此次连接</strong>，然后Server就由Listen状态进入到SYN-RCVD（同步收到状态）<br>这就对我最上面的问题作出了一定解释，原来Server的第二次握手并不只是为了告诉Client：“我可以接收消息了哦。”其实，这是为了确保从第一次握手得到的报文段确实是Client现在想要请求的，也就是告诉Client：“我收到一个seq为x的连接请求，快告诉我需不需要连接啊？”<br>因为当Client的第一次握手发送的请求报文由于网络或是其他原因在过程中受阻了，当Server接收到时已经超时。但是对Server来说，它并不能从接收到的SYN和seq判断出是超时请求，于是他仍然会发起第二次握手，与Client同步。此时第三次握手就显得非常重要了，因为Server只能通过第三次握手来判断是否确实要建立连接（万一是上述的超时连接呢！）</li>
 <li><strong>第三次握手</strong>：Client接收到确认报文段，根据ack知道了：“哦，这确实是我上次发送seq的回复啊（因为来自Server的ack=来自Client的seq+1），那么我就发送个消息告诉Server这次连接需要建立吧！”于是Client向Server发送了确认报文段（ACK=1,ack=y+1,seq=x+1），并进入了ESTABLISHED（已建立连接）状态。Server接收到确认报文后对比Client的ack=Server的seq+1就知道了：“这是对我之前你发送seq=y的回复，告诉我确实要建立连接啊，那么我就赶紧建立连接吧！”于是Server进入了ESTABLISHED（已建立连接）状态，至此就完成了三次握手并建立了TCP连接</li>
 </ul>
-<h1 id="TCP连接释放–四次挥手"><a href="#TCP连接释放–四次挥手" class="headerlink" title="TCP连接释放–四次挥手"></a>TCP连接释放–四次挥手</h1><p>我们用同样的方式来解读四次挥手：<br><img src="http://thyrsi.com/t6/674/1551340909x2728309621.png" alt="四次挥手"></p>
+<h1 id="TCP连接释放–四次挥手"><a href="#TCP连接释放–四次挥手" class="headerlink" title="TCP连接释放–四次挥手"></a>TCP连接释放–四次挥手</h1><p>我们用同样的方式来解读四次挥手：<br><img src="https://i.screenshot.net/5xe72hj" alt="四次挥手"></p>
 <h2 id="同样解释几个字段的意思："><a href="#同样解释几个字段的意思：" class="headerlink" title="同样解释几个字段的意思："></a>同样解释几个字段的意思：</h2><ul>
 <li><strong>ACK</strong> 确认位</li>
 <li><strong>FIN</strong> 终止控制位</li>

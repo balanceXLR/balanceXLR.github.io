@@ -112,12 +112,12 @@
 <meta property="og:site_name" content="戏铃人">
 <meta property="og:description" content="接触前端也有快一年时间了，期间也有时不时刷一些前端面试题，但我的记忆似鱼，自以为是的理解，往往过几周后就烟消云散了，特写此文用于整理我遇到的一些知识盲区。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://thyrsi.com/t6/671/1550458092x2890174106.jpg">
-<meta property="og:updated_time" content="2019-02-22T09:58:54.779Z">
+<meta property="og:image" content="https://screenshot.net/zh/n4q1df0">
+<meta property="og:updated_time" content="2019-03-08T09:10:02.847Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="温故而知新-个人前端知识盲区">
 <meta name="twitter:description" content="接触前端也有快一年时间了，期间也有时不时刷一些前端面试题，但我的记忆似鱼，自以为是的理解，往往过几周后就烟消云散了，特写此文用于整理我遇到的一些知识盲区。">
-<meta name="twitter:image" content="http://thyrsi.com/t6/671/1550458092x2890174106.jpg">
+<meta name="twitter:image" content="https://screenshot.net/zh/n4q1df0">
 
 
 
@@ -431,7 +431,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-22 17:58:54" itemprop="dateModified" datetime="2019-02-22T17:58:54+08:00">2019-02-22</time>
+                <time title="修改时间：2019-03-08 17:10:02" itemprop="dateModified" datetime="2019-03-08T17:10:02+08:00">2019-03-08</time>
               
             
           </span>
@@ -500,7 +500,7 @@
 <li>目标阶段</li>
 <li>冒泡阶段</li>
 </ul>
-<p><img src="http://thyrsi.com/t6/671/1550458092x2890174106.jpg" alt=""><br>当点击目标元素时，首先通过事件捕获由根元素向内捕获到目标元素，进入目标阶段，然后由目标元素向外冒泡到根元素</p>
+<p><img src="https://screenshot.net/zh/n4q1df0" alt=""><br>当点击目标元素时，首先通过事件捕获由根元素向内捕获到目标元素，进入目标阶段，然后由目标元素向外冒泡到根元素</p>
 <h2 id="如何控制事件在捕获-冒泡阶段执行"><a href="#如何控制事件在捕获-冒泡阶段执行" class="headerlink" title="如何控制事件在捕获/冒泡阶段执行"></a>如何控制事件在捕获/冒泡阶段执行</h2><p>通常使用<code>addEventListener</code>为目标添加事件，其中的<code>useCapture</code>参数可以控制执行阶段：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div div1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div div2"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div div3"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div div4"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> divArr = <span class="built_in">document</span>.getElementsByClassName(<span class="string">'div'</span>)</span><br><span class="line"><span class="comment">// 冒泡阶段执行句柄</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; divArr.length; i++) &#123;</span><br><span class="line">    <span class="comment">// 这边为什么要使用let呢？闭包！</span></span><br><span class="line">    divArr[i].addEventListener(<span class="string">'click'</span>, (e) =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">// useCapture参数默认为false，即冒泡阶段执行</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 捕获阶段执行句柄</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; divArr.length; i++) &#123;</span><br><span class="line">    <span class="comment">// 这边为什么要使用let呢？闭包！</span></span><br><span class="line">    divArr[i].addEventListener(<span class="string">'click'</span>, (e) =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i)</span><br><span class="line">    &#125;, <span class="literal">true</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="举个事件委托的例子"><a href="#举个事件委托的例子" class="headerlink" title="举个事件委托的例子"></a>举个事件委托的例子</h2><p>将子元素的事件委托到父元素上，减少事件绑定的个数，优化了性能：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"wrap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
