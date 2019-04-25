@@ -114,7 +114,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://developers.google.com/web/tools/chrome-devtools/network-performance/imgs/resource-timing-api.png?hl=zh-cn">
 <meta property="og:image" content="https://developers.google.com/web/tools/chrome-devtools/network-performance/imgs/resource-timing-data.png?hl=zh-cn">
-<meta property="og:updated_time" content="2019-03-25T03:52:17.909Z">
+<meta property="og:updated_time" content="2019-04-25T08:05:13.826Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="硬核分析页面加载全过程">
 <meta name="twitter:description" content="从输入URL到页面加载完成过程都发生了什么事情？ 这是一道十分常见的问题，也是做前端性能优化必备的知识基础.本文将结合网上文章，个人理解，前端开发者所需注意点进行编写">
@@ -432,7 +432,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-25 11:52:17" itemprop="dateModified" datetime="2019-03-25T11:52:17+08:00">2019-03-25</time>
+                <time title="修改时间：2019-04-25 16:05:13" itemprop="dateModified" datetime="2019-04-25T16:05:13+08:00">2019-04-25</time>
               
             
           </span>
@@ -550,7 +550,10 @@
 <h3 id="Redirect-重定向"><a href="#Redirect-重定向" class="headerlink" title="Redirect 重定向"></a>Redirect 重定向</h3><p>此处为浏览器行为，如在当前页面的浏览器重输入目标url，进行跳转，这个跳转过程极为redirect</p>
 <h3 id="App-Cache-查询缓存"><a href="#App-Cache-查询缓存" class="headerlink" title="App Cache 查询缓存"></a>App Cache 查询缓存</h3><ul>
 <li>强缓存 catch-control || expire</li>
-<li>协商缓存 last-modified/if-modify-since || etag || if-none-match<h3 id="Queue-请求排队"><a href="#Queue-请求排队" class="headerlink" title="Queue 请求排队"></a>Queue 请求排队</h3>请求排队可能有一下原因：</li>
+<li>协商缓存 last-modified/if-modify-since || etag || if-none-match</li>
+</ul>
+<h3 id="Queue-请求排队"><a href="#Queue-请求排队" class="headerlink" title="Queue 请求排队"></a>Queue 请求排队</h3><p>请求排队可能有一下原因：</p>
+<ul>
 <li>请求已被渲染引擎推迟，因为该请求的优先级被视为低于关键资源（例如脚本/样式）的优先级。 图像经常发生这种情况。换言之，某一个资源发起的js、css资源的请求会优先于图片的请求</li>
 <li>请求已被暂停，以等待将要释放的不可用 TCP 套接字。意思是当前TCP连接对该HTTP请求不可用</li>
 <li>请求已被暂停，因为在 HTTP 1 上，浏览器仅允许每个源拥有六个 TCP 连接。也就是说并发请求的资源数是有限的</li>
